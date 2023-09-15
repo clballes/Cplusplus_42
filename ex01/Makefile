@@ -5,7 +5,7 @@ RM = rm -rf
 
 # Sources
 SRCS = phone.cpp main.cpp
-LIB = lib_phone.h
+LIB = phone_class.h
 OBJ = $(SRCS:%.cpp=%.o)
 DEPS = $(SRCS:%.cpp=%.d)
 

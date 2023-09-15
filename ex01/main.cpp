@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/15 15:40:26 by clballes          #+#    #+#             */
+/*   Updated: 2023/09/15 15:40:28 by clballes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
-#include "lib_phone.h"
+#include "phone_class.h"
 
 int main()
 {
     PhoneBook phoneBook;
-    phoneBook.Sample();
     std::string userInput;
-    while (1) {
+    while (1)
+	{
         // Prompt the user for input
         std::cout << "Enter 'ADD' to add a contact, 'SEARCH' to search, or 'EXIT' to exit: ";
         // Read user input as a string
@@ -15,8 +27,10 @@ int main()
         // Check the user's choice and perform the corresponding action
         if (userInput == "ADD")
         {
-            std::cout << "You chose to add an item." << std::endl;
-            // Add your add item logic here
+            // std::cout << "You chose to add an item." << std::endl;
+    		phoneBook.addContact("Clara", "Ballester", "123123123", "que", "tal");
+			// PhoneBook phoneBook;
+		    // Add your add item logic here
         }
         else if (userInput == "SEARCH")
         {
@@ -31,6 +45,5 @@ int main()
             std::cout << "Invalid choice. Please enter 'ADD', 'SEARCH', or 'EXIT'." << std::endl;
         }
     }
-
-    return 0;
+    return (0);
 }
