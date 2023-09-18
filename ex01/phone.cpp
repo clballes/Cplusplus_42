@@ -13,9 +13,26 @@
 #include "phone_class.h"
 #include <iostream>
 
-void PhoneBook::addContact(std::string name, std::string lastName, std::string phoneNumber, std::string nickname, std::string darkSecret)
+void PhoneBook::addContact(void)
 {
-	std::cout << name << " y " << lastName << " " << phoneNumber << " " << nickname << " " << darkSecret << std::endl;
+    std::string UserInfo;
+	std::string name;
+	std::string lastName;
+	std::string PhoneNumber;
+	std::string nickname;
+	std::string darkSecret;
+	std::cout << "First Name: ";
+	std::cin >> name;
+	std::cout << "Last Name: ";
+	std::cin >> lastName;
+	std::cout << "Phone Number: ";
+	std::cin >> PhoneNumber;
+	std::cout << "Nickname: ";
+	std::cin >> nickname;
+	std::cout << "Your darkest secret: ";
+	std::cin >> darkSecret;
+	std::cout << "Thanks for completing the form! contact added! :)" << std::endl;
+
 	// if(!name.empty())
 	// {
 	// 	contacts[0].name = name;

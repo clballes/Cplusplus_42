@@ -21,7 +21,7 @@ class Contact{
 		std::string PhoneNumber;
 		std::string nickname;
 		std::string darkSecret;
-	public:
+	// public:
 		// name.setName();
 
 // 		The contact fields are: first name, last name, nickname, phone number, and
@@ -37,7 +37,7 @@ class PhoneBook {
 		Contact contacts[8];
 		int	count;
 		//funcio afegir contact
-		void addContact(std::string name, std::string lastName, std::string phoneNumber, std::string nickname, std::string darkSecret);
+		void addContact();
     // It can store a maximum of 8 contacts. If the user tries to add a 9th contact,// replace the oldest one by the new one
 
 };

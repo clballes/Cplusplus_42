@@ -28,7 +28,8 @@ int main()
         if (userInput == "ADD")
         {
             // std::cout << "You chose to add an item." << std::endl;
-    		phoneBook.addContact("Clara", "Ballester", "123123123", "que", "tal");
+    		// phoneBook.addContact("Clara", "Ballester", "123123123", "que", "tal");
+    		phoneBook.addContact();
 			// PhoneBook phoneBook;
 		    // Add your add item logic here
         }
