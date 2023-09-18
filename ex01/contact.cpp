@@ -12,6 +12,7 @@
 
 #include "contact_class.hpp"
 #include <iostream>
+#include <string>
 
 Contact::Contact()
 {
@@ -23,27 +24,72 @@ Contact::~Contact()
 	return ;
 }
 
-void Contact::addContactInfo(void)
-{
-	std::string UserInfo;
-	std::cout << "First Name: ";
-	std::cin >> this->_name;
-	std::cout << "Last Name: ";
-	std::cin >> this->_lastName;
-	std::cout << "Phone Number: ";
-	std::cin >> this->_PhoneNumber;
-	std::cout << "Nickname: ";
-	std::cin >> this->_nickname;
-	std::cout << "Your darkest secret: ";
-	std::cin >> this->_darkSecret;
-	std::cout << "Thanks for completing the form! contact added! :)" << std::endl;
+void Contact::addContactInfo(void) {
+    std::cin.ignore();
+	do {
+    	std::cout << "First Name: ";
+        std::getline(std::cin, this->_name);
+		if(!std::cin)
+			break ;
+        if (this->_name.empty()) {
+            std::cerr << "Error: First Name cannot be empty. Please try again: ";
+        }
+    } while (this->_name.empty());
+    do {
+    	std::cout << "Last Name: ";
+        std::getline(std::cin, this->_lastName);
+        if(!std::cin)
+			break ;
+		if (this->_lastName.empty()) {
+            std::cerr << "Error: Last Name cannot be empty. Please try again: ";
+        }
+    } while (this->_lastName.empty());
+
+    do {
+    	std::cout << "Phone Number: ";
+        std::getline(std::cin, this->_PhoneNumber);
+        if(!std::cin)
+			break ;
+		if (this->_PhoneNumber.empty()) {
+            std::cerr << "Error: Phone Number cannot be empty. Please try again: ";
+        }
+    } while (this->_PhoneNumber.empty());
+
+    do {
+    	std::cout << "Nickname: ";
+        std::getline(std::cin, this->_nickname);
+		if(!std::cin)
+			break ;
+        if (this->_nickname.empty()) {
+            std::cerr << "Error: Nickname cannot be empty. Please try again: ";
+        }
+    } while (this->_nickname.empty());
+
+    do {
+    	std::cout << "Your darkest secret: ";
+        std::getline(std::cin, this->_darkSecret);
+		if(!std::cin)
+			break ;
+        if (this->_darkSecret.empty()) {
+            std::cerr << "Error: Darkest Secret cannot be empty. Please try again: ";
+        }
+    } while (this->_darkSecret.empty());
+
+    std::cout << "Thanks for completing the form! Contact added! :)" << std::endl;
 }
 
-// std::string getName() const {
-//         return _name;
-//     }
 
 std::string Contact::getName()
 {
     return _name;
+}
+
+std::string Contact::getLastName()
+{
+    return _lastName;
+}
+
+std::string Contact::getNickname()
+{
+    return _nickname;
 }

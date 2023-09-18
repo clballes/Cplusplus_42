@@ -28,5 +28,7 @@ class Contact
 		~Contact();
 		void addContactInfo();
 		std::string getName();
+		std::string getLastName();
+		std::string getNickname();
 };
 #endif

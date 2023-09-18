@@ -13,8 +13,7 @@
 #include "phone_class.hpp"
 #include "contact_class.hpp"
 #include <iostream>
-#include <sstream>
-
+#include <iomanip>
 
 PhoneBook::PhoneBook()
 {
@@ -41,27 +40,42 @@ void PhoneBook::checkContact()
 	count++;
 };
 
+std::string my_strlen(std::string str)
+{
+	if (str.length() > 10)
+	{
+		str.resize(9);
+		str.append(".");
+	}
+	return (str);
+}
+
 void PhoneBook::search()
 {
     std::string index;
-	int value;
+    int value;
 
-	std::cout << "Which number contact do you want to display: ";
-    std::cin >> index;
-    value = std::stoi(index);
-	// for (int i = 0; i < 8; i++) {
-	// 			std::string firstName = contacts[i].getName(); // Assuming getName returns the first name
-	// 			std::cout << "Contact " << i + 1 << " First Name: " << firstName << std::endl;
-	// 		}
-	for(int i = 0; i < 8; i++)
+	while (1)
+	{
+		std::cout << "Which number contact do you want to display: ";
+		std::cin >> index;
+		value = atoi(index.c_str());
+		if (value > 8 || value <= 0)
+			std::cerr << "Error: Number must be between 1 and 8!" << std::endl;
+		else	
+			break ;
+	}
+	for (int i = 0; i < 8; i++)
 	{
 		if ((value - 1) == i)
 		{
-			std::string hola = contacts[i].getName();
-			// contacts[i]
-			std::cout << hola << std::endl;
-
-			// std::cout << "" << value << "|" << _name << "|" << _lastname << "|" << nickname << std::endl;
+			std::string name = contacts[i].getName();
+			name = my_strlen(name);
+			std::string lastName = contacts[i].getLastName();
+			lastName = my_strlen(lastName);
+			std::string nickname = contacts[i].getNickname();
+			nickname = my_strlen(nickname);
+			std::cout << std::right << std::setw(10) << value << " | " << std::setw(10) << name << " | " << std::setw(10) << lastName << " | " << std::setw(10) << nickname << std::endl;
 		}
 	}
 }
