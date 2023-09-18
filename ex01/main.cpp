@@ -11,8 +11,11 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include "phone_class.h"
+#include "phone_class.hpp"
+#include "contact_class.hpp"
 
+
+//usat getline
 int main()
 {
     PhoneBook phoneBook;
@@ -23,19 +26,15 @@ int main()
         std::cout << "Enter 'ADD' to add a contact, 'SEARCH' to search, or 'EXIT' to exit: ";
         // Read user input as a string
         std::cin >> userInput;
-
         // Check the user's choice and perform the corresponding action
         if (userInput == "ADD")
         {
-            // std::cout << "You chose to add an item." << std::endl;
-    		// phoneBook.addContact("Clara", "Ballester", "123123123", "que", "tal");
-    		phoneBook.addContact();
-			// PhoneBook phoneBook;
-		    // Add your add item logic here
+			phoneBook.checkContact();
         }
         else if (userInput == "SEARCH")
         {
-            std::cout << "You chose to search." << std::endl;
+            // std::cout << "You chose to search." << std::endl;
+			phoneBook.search();
             // Add your search logic here
         }
         else if (userInput == "EXIT") {

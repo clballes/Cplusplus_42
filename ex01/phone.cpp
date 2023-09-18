@@ -10,44 +10,58 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phone_class.h"
+#include "phone_class.hpp"
+#include "contact_class.hpp"
 #include <iostream>
+#include <sstream>
 
-void PhoneBook::addContact(void)
+
+PhoneBook::PhoneBook()
 {
-    std::string UserInfo;
-	std::string name;
-	std::string lastName;
-	std::string PhoneNumber;
-	std::string nickname;
-	std::string darkSecret;
-	std::cout << "First Name: ";
-	std::cin >> name;
-	std::cout << "Last Name: ";
-	std::cin >> lastName;
-	std::cout << "Phone Number: ";
-	std::cin >> PhoneNumber;
-	std::cout << "Nickname: ";
-	std::cin >> nickname;
-	std::cout << "Your darkest secret: ";
-	std::cin >> darkSecret;
-	std::cout << "Thanks for completing the form! contact added! :)" << std::endl;
+	count = 0;
+	return ;
+}
 
-	// if(!name.empty())
-	// {
-	// 	contacts[0].name = name;
-	// 	std::cout << contacts[0].name << std::endl;
-	// }
-	// std::cout << std::string name, std::string lastName, std::string phoneNumber, std::string nickname, std::string darkSecret << std::endl;
-	// if (count < 8)
-	// {
-	// 	contacts[count++].setContact(name, phoneNumber);
-	// } else
-	// {
-	// 	// Replace the oldest contact (the first one)
-	// 	for (int i = 0; i < 7; ++i) {
-	// 		contacts[i] = contacts[i + 1];
-	// 	}
-	// 	contacts[7].setContact(name, phoneNumber);
-	// }
+PhoneBook::~PhoneBook()
+{
+	return ;
+}
+
+void PhoneBook::checkContact()
+{
+	if (count == 8)
+	{
+		for(int i = 0; i < 7; i++)
+		{
+			contacts[i] = contacts[i + 1];
+		}
+		count--;
+	}
+	contacts[count].addContactInfo();
+	count++;
+};
+
+void PhoneBook::search()
+{
+    std::string index;
+	int value;
+
+	std::cout << "Which number contact do you want to display: ";
+    std::cin >> index;
+    value = std::stoi(index);
+	// for (int i = 0; i < 8; i++) {
+	// 			std::string firstName = contacts[i].getName(); // Assuming getName returns the first name
+	// 			std::cout << "Contact " << i + 1 << " First Name: " << firstName << std::endl;
+	// 		}
+	for(int i = 0; i < 8; i++)
+	{
+		if ((value - 1) == i)
+		{
+			std::string hola = contacts[i].getName();
+			// contacts[i]
+			std::cout << hola << std::endl;
+
+			// std::cout << "" << value << "|" << _name << "|" << _lastname << "|" << nickname << std::endl;
+		}
+	}
 }

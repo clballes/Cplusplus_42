@@ -10,35 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <iostream>
+#include "contact_class.hpp"
 
 #ifndef PHONE_CLASS_H
 #define PHONE_CLASS_H
 
-class Contact{
-	private:
-		std::string name;
-		std::string lastName;
-		std::string PhoneNumber;
-		std::string nickname;
-		std::string darkSecret;
-	// public:
-		// name.setName();
-
-// 		The contact fields are: first name, last name, nickname, phone number, and
-// darkest secret. A saved contact can’t have empty fields.
-	// void	setContact()
-	// {
-
-	// }
-};
-
 class PhoneBook {
-    public:
+	private:
 		Contact contacts[8];
 		int	count;
-		//funcio afegir contact
-		void addContact();
-    // It can store a maximum of 8 contacts. If the user tries to add a 9th contact,// replace the oldest one by the new one
-
+    public:
+		PhoneBook();
+		~PhoneBook();
+		void	checkContact();
+		void	search();
 };
 #endif

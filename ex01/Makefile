@@ -1,22 +1,35 @@
-NAME = phone
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: clballes <clballes@student.42barcel>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/09/18 12:01:39 by clballes          #+#    #+#              #
+#    Updated: 2023/09/18 12:01:41 by clballes         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = phonebook
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 # Sources
-SRCS = phone.cpp main.cpp
-LIB = phone_class.h
+SRCS = phone.cpp main.cpp contact.cpp
+LIB = phone_class.hpp contact_class.hpp
+
+# create obj and resources
 OBJ = $(SRCS:%.cpp=%.o)
 DEPS = $(SRCS:%.cpp=%.d)
-
 
 # compiling makefile
 
 $(NAME): $(OBJ) $(LIB)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
-	@$(CC) -c $(CFLAGS) -I$(LIB) -MMD $< -o $@
+	@$(CC) -c $(CFLAGS) -MMD $< -o $@
 
 clean:
 	$(RM) $(NAME) $(OBJ) $(DEPS)
