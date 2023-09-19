@@ -1,21 +1,22 @@
-NAME = megaphone
+NAME = Zombie
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 # Sources
-SRCS = megaphone.cpp
+SRCS = zombie.cpp main.cpp
+LIB = zombie.hpp
+
+# create obj and resources
 OBJ = $(SRCS:%.cpp=%.o)
 DEPS = $(SRCS:%.cpp=%.d)
 
-
 # compiling makefile
-
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(LIB)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
-	@$(CC) -c $(CFLAGS) -MMD $< -o $@
+	$(CC) -I. -c $(CFLAGS) -MMD $< -o $@
 
 clean:
 	$(RM) $(NAME) $(OBJ) $(DEPS)
