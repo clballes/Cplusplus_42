@@ -1,7 +1,19 @@
-#include "sed.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/22 17:37:16 by clballes          #+#    #+#             */
+/*   Updated: 2023/09/22 17:37:17 by clballes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include <fstream>
 
+void createNewFile(std::ifstream& inputFile, const std::string& filename, const std::string& s1, const std::string& s2);
 int main(int argc, char *argv[])
 {
     if (argc == 4)
@@ -14,28 +26,11 @@ int main(int argc, char *argv[])
         if (!inputFile.is_open())
         {
             std::cerr << "Failed to open the file for reading." << std::endl;
-            return 1; // Return an error code
+            return 1;
         }
-        std::ofstream Ouputfile(filename + ".replace");
-        std::string line;
-        while (std::getline(inputFile, line))
-        {
-            std::string modifiedLine;
-            size_t pos = 0;
-            while (pos < line.length()) {
-                size_t foundPos = line.find(s1, pos);
-                if (foundPos == std::string::npos) {
-                    modifiedLine += line.substr(pos);
-                    break;
-                }
-                modifiedLine += line.substr(pos, foundPos - pos);
-                modifiedLine += s2;
-                pos = foundPos + s1.length();
-                }
-                Ouputfile << modifiedLine << '\n';
-            }
-            inputFile.close(); // Close the file when done reading
-        }
-        else
-            return 0;
+		createNewFile(inputFile, filename, s1, s2);
+        inputFile.close();
+    }
+    else
+        return 0;
 }

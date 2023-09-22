@@ -1,28 +1,42 @@
-#include "Weapon.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/22 17:13:13 by clballes          #+#    #+#             */
+/*   Updated: 2023/09/22 17:13:14 by clballes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "HumanB.hpp"
 
-void HumanB::setWeapon(const Weapon& humanWeapon)
+HumanB::HumanB(const std::string& humanName) : _name(humanName), _weapon(nullptr)
 {
-        if (_weapon == nullptr) {
-            _weapon = new Weapon(humanWeapon.getType());
-        } else {
-            _weapon->setType(humanWeapon.getType());
-        }
-    }
+	std::cout << "constructor called human B" << std::endl;
+	return ;
+}
+
+void HumanB::setWeapon(Weapon& humanWeapon)
+{
+        this->_weapon = &humanWeapon;
+}
 
 HumanB::~HumanB()
 {
-    delete _weapon; // Release dynamically allocated weapon when HumanB is destroyed
+	std::cout << "destructor called HUMAN B" << std::endl;
+
 }
 
 void HumanB::attack()
 {
-    if (_weapon != nullptr)
+    if (this->_weapon != nullptr)
     {
-        std::cout << _name << " attacks with their " << _weapon->getType() << std::endl;
+        std::cout << this->_name << " attacks with their " << this->_weapon->getType() << std::endl;
     } 
     else 
     {
-        std::cout << _name << " is unarmed and cannot attack." << std::endl;
+        std::cout << this->_name << " is unarmed and cannot attack." << std::endl;
     }
 }

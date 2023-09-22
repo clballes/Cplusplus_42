@@ -1,19 +1,32 @@
-#include "zombie.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/22 15:45:02 by clballes          #+#    #+#             */
+/*   Updated: 2023/09/22 15:45:04 by clballes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Zombie.hpp"
 
 int main()
 {
-    Zombie stackZombie("Stack Zombie");
-    stackZombie.announce();
+    Zombie zombie("Brains Zombie");
+    zombie.announce();
 
-    // Create a random Zombie on the stack using randomChump function
-    Zombie* heapZombie = nullptr; 
-    heapZombie = stackZombie.newZombie("HeapZombie");
-    heapZombie->announce();
+    std::cout << "----- NEW ZOMBIE -----" << std::endl;
 
+    Zombie* ptrZombie = nullptr; 
+    ptrZombie = newZombie("newZombie");
+    ptrZombie->announce();
 
-    // Create a random Zombie on the stack using randomChump function
-    stackZombie.randomChump("RandomZombie");
-    // Clean up the heap-allocated Zombie
-    delete heapZombie;
+    std::cout << "----- RANDOM CHUMP -----" << std::endl;
+
+    randomChump("RandomZombie");
+
+    delete ptrZombie;
     return 0;
 }

@@ -1,21 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/22 16:01:56 by clballes          #+#    #+#             */
+/*   Updated: 2023/09/22 16:01:57 by clballes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Zombie.hpp"
 
 int main()
 {
-    Zombie stackZombie("Stack Zombie");
     int N = 5;
-    std::string zombieName = "mya";
-    Zombie* horde = stackZombie.zombieHorde(N, zombieName);
+    std::string zombieName = "VALERIO";
 
+    Zombie* horde = zombieHorde(N, zombieName);
     if (horde)
     {
-        for (int i = 0; i < N; ++i) {
+        for (int i = 0; i < N; ++i)
             horde[i].announce();
-        }
-        for (int i = 0; i < N; ++i) {
-            horde[i].~Zombie(); // Explicitly call the destructor for each Zombie.
-        }
-        operator delete[](horde); // Release the allocated memory.
     }
+	delete [] horde;
     return 0;
 }

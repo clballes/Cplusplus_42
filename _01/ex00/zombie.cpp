@@ -1,28 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/22 15:44:32 by clballes          #+#    #+#             */
+/*   Updated: 2023/09/22 15:44:33 by clballes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <iostream>
-#include "zombie.hpp"
+#include "Zombie.hpp"
 
-void    Zombie::announce()
+Zombie::Zombie(std::string name) : _name(name) 
 {
-    std::cout << _name << ":BraiiiiiiinnnzzzZ..." << std::endl;
-}
-
-Zombie* Zombie::newZombie(std::string name)
-{
-    return new Zombie(name);
-}
-
-void    Zombie::randomChump(std::string name)
-{
-    std::cout << "zombie random chump mode" << std::endl;
-    Zombie zombie(name);
-    std::cout << "zombie created with name: " << name << std::endl;
-    zombie.announce();
+	return ;
 }
 
 Zombie::~Zombie()
 {
-    std::cout << "Zombie name: " << _name << "   has been destroyed" << std::endl;
+    std::cout << "Zombie name: " << _name << " has been destroyed" << std::endl;
+}
+
+void    Zombie::announce()
+{
+    std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
 std::string Zombie::getName() {
