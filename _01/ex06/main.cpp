@@ -1,18 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/26 12:41:03 by clballes          #+#    #+#             */
+/*   Updated: 2023/09/26 12:41:04 by clballes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Harl.hpp"
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-    if (argc == 2)
-    {
-        Harl harl;
-        std::string str = argv[1];
-        harl.cutString(str);
+    Harl harl;
+	std::string level;
 
-        // harl.complain("debug");
-        // harl.complain("info");
-        // harl.complain("warning");
-        harl.complain("error");
-
-    }
+	if (argc == 2)
+	{
+		level = argv[1];
+		harl.complain(level);
+	}
+	else
+		std::cout << "Incorrect number arguments, it has to be the executable and one parameter" << std::endl;
     return 0;
 }
