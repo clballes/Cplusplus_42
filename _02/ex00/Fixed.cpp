@@ -26,11 +26,11 @@ Fixed::Fixed( Fixed const & src )
 	return ;
 }
 
-Fixed & Fixed::operator=(Fixed const &src)
+Fixed & Fixed::operator=(Fixed const &rhs)
 {
-	std::cout << "opertor  called" << std::endl;
-	if (this != &src)
-		this->_value = 3;
+	std::cout << "operator rhs.getRawBits(): " << rhs.getRawBits() << std::endl;
+	if (this != &rhs)
+		this->_value = rhs.getRawBits();
 	return *this;
 }
 Fixed::~Fixed()
