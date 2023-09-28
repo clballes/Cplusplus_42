@@ -13,19 +13,28 @@
 #ifndef __FIXED_H__
 #define __FIXED_H__
 #include <iostream>
+#include <cmath>
 
 class Fixed
 {
 	private:
-		int _value;
-		static const int _fractBits;
+		int _value; //integer part fixed point
+		static const int _fractBits; //integer part for fract bits
 	public:
 		Fixed( void );
+		Fixed( const int num );
+		Fixed( const float num );
 		Fixed( Fixed const & src );
-		Fixed & operator=(Fixed const & srcs);
 		~Fixed( void );
-		int getRawBits( void ) const;
+
+		Fixed & operator=(Fixed const & rhs);
+
+		float toFloat( void ) const;
+		int toInt( void ) const;
+
+		float getRawBits( void ) const;
  		void setRawBits( int const raw );
 };
 
+// std::ostream &	operator<<( std::ostream & o, Fixed const & rhs );
 #endif
