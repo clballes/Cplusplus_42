@@ -18,23 +18,49 @@
 class Fixed
 {
 	private:
-		int _value; //integer part fixed point
-		static const int _fractBits; //integer part for fract bits
+		int _value;
+		static const int _fractBits;
 	public:
 		Fixed( void );
 		Fixed( const int num );
 		Fixed( const float num );
 		Fixed( Fixed const & src );
+		Fixed & operator=(Fixed const & rhs);
 		~Fixed( void );
 
-		Fixed & operator=(Fixed const & rhs);
+		//comparison operators >, <, >=, <=, == and !=.
+		bool operator==(Fixed const & rhs) const;
+		bool operator!=(Fixed const & rhs) const;
+		bool operator>(Fixed const & rhs) const;
+		bool operator>=(Fixed const & rhs) const;
+		bool operator<(Fixed const & rhs) const;
+		bool operator<=(Fixed const & rhs) const;
 
-		float toFloat( void ) const;
-		int toInt( void ) const;
+		//arithmetic operators
+		Fixed operator+(const Fixed& rhs) const;
+		Fixed operator-(const Fixed& rhs) const;
+		Fixed operator*(const Fixed& rhs) const;
+		Fixed operator/(const Fixed& rhs) const;
 
-		float getRawBits( void ) const;
- 		void setRawBits( int const raw );
+		//pre increment 
+		Fixed  operator++(void );
+		Fixed  operator--(void);
+		// post-increment
+		Fixed  operator++(int);
+		Fixed  operator--(int);
+
+		//members public min and maxs
+		const static Fixed& min(const Fixed &  a, const Fixed & b );
+		const static Fixed& max(const Fixed &  a, const Fixed & b );
+
+		float 	toFloat( void ) const;
+		int 	toInt( void ) const;
+		float 	getRawBits( void ) const;
+ 		void 	setRawBits( int const raw );
 };
 
 std::ostream &	operator<<( std::ostream & o, Fixed const & rhs );
+std::ostream &	min( std::ostream & o, Fixed const & lhs, Fixed const & rhs );
+std::ostream &	max( std::ostream & o, Fixed const & lhs, Fixed const & rhs );
+
 #endif

@@ -14,7 +14,7 @@
 #include <bitset>
 
 
-const int	Fixed:: _fractBits = 8;
+const int	Fixed::_fractBits = 8;
 
 //default
 Fixed::Fixed(void) : _value( 0 )
@@ -27,19 +27,15 @@ Fixed::Fixed(void) : _value( 0 )
 Fixed::Fixed(const int num) : _value( num )
 {
 	std::cout << "Int Constructor called" << std::endl;
-	std::cout << "Before binary representation of _rawBits: " << std::bitset<16>(_value) << std::endl;
-	
-	this->_value = (num << Fixed::_fractBits);
-	std::cout << "Binary representation of _rawBits: " << std::bitset<16>(_value) << std::endl;
-    
+	this->_value = (num << _fractBits);
 	return ;
 }
 
 Fixed::Fixed(const float num) : _value( num )
 {
-	_value = static_cast<int>(num);
 	std::cout << "Fixed-Float Constructor called" << std::endl;
-	return ;
+	this->_value = int(roundf(num * (1 << this->_fractBits)));
+	return;
 }
 
 Fixed::Fixed( Fixed const & src )
@@ -56,6 +52,7 @@ Fixed & Fixed::operator=(Fixed const &rhs)
 	return *this;
 }
 
+//Destrcuor called
 Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
@@ -64,20 +61,27 @@ Fixed::~Fixed()
 
 int Fixed::toInt( void ) const
 {
-	std::cout << "funciton int member" << std::endl;
-	return _value;
+	return (this->_value >> this->_fractBits);
 }
 
-// t converts the fixed-point value to a floating-point value.
 float Fixed::toFloat( void ) const
 {
-	std::cout << "funcition float member" << std::endl;
-	return 4;
-
+	return (this->_value / pow(2, this->_fractBits));
 }
 
 float Fixed::getRawBits( void ) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
 	return this->_value; 
+}
+
+void Fixed::setRawBits( int const raw )
+{
+	this->_value = raw;
+	return ;
+}
+
+std::ostream &	operator<<( std::ostream & o, Fixed const & rhs )
+{
+	o << rhs.toFloat();
+	return o;
 }
