@@ -20,6 +20,7 @@ int main( void )
 	Point const b;
 	Point const c;
 	Point const point;
+	
 	bsp(a, b, c, point);
 	return 0;
 }
