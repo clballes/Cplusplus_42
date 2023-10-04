@@ -19,14 +19,14 @@ ScavTrap::ScavTrap(std::string name)
 
 ScavTrap::ScavTrap(ScavTrap const & src)
 {  
-    std::cout << " ScavTra Copy Constructor called" << std::endl;
+    std::cout << " ScavTrap Copy Constructor called" << std::endl;
 	*this = src;
 	return ;
 }
 
 ScavTrap & ScavTrap::operator=(ScavTrap const & rhs)
 {
-    std::cout << " ScavTra Operator overload called" << std::endl;
+    std::cout << " ScavTrap Operator overload called" << std::endl;
     this->_attackDamage = rhs.getAttackDamage();
     this->_hitPoints = rhs.getHitPoints();
     this->_name = rhs.getName();
@@ -36,12 +36,12 @@ ScavTrap & ScavTrap::operator=(ScavTrap const & rhs)
 
 ScavTrap::~ScavTrap( void )
 {
-    std::cout << "ScavTra Destructor called" << std::endl;
+    std::cout << "ScavTrap Destructor called" << std::endl;
 }
 
 //fucitons
 
 void ScavTrap::guardGate( void )
 {
-    
+    std::cout << "ScavTrap is now in Gate keeper mode." << std::endl;
 }

@@ -10,14 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = FixedRound
+NAME = Animals
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 # Sources
-SRCS = main.cpp Fixed.cpp Point.cpp bsp.cpp
-LIB = Fixed.hpp Point.hpp
+SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp
+LIB =  Animal.hpp Dog.hpp Cat.hpp 
 
 # create obj and resources
 OBJ = $(SRCS:%.cpp=%.o)

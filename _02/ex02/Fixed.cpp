@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-#include <bitset>
-
 
 const int	Fixed::_fractBits = 8;
 
@@ -56,7 +54,7 @@ Fixed & Fixed::operator=(Fixed const &rhs)
 //Operators calling
 bool Fixed::operator==(Fixed const & rhs) const
 {
-	return this->_value > rhs._value;
+	return this->_value == rhs._value;
 }
 
 bool Fixed::operator!=(Fixed const & rhs) const
@@ -153,7 +151,7 @@ int Fixed::toInt( void ) const
 
 float Fixed::toFloat( void ) const
 {
-	return (this->_value / pow(2, this->_fractBits));
+	return static_cast<float>(_value) / static_cast<float>(1 << _fractBits);
 }
 
 float Fixed::getRawBits( void ) const
@@ -167,28 +165,26 @@ void Fixed::setRawBits( int const raw )
 	return ;
 }
 
-
-
 //member public function operator
-// Fixed& Fixed::min(Fixed& a, Fixed& b)
+// const Fixed& Fixed::min( Fixed &  a, Fixed & b )
 // {
-// 	if (a._value <= b._value)
+// 	if (a <= b)
 // 		return a;
 // 	else
 // 		return b;
 // }
 
-const Fixed& Fixed::min(const Fixed &  a, const Fixed & b ) //es cconst no podem modificar el value
+const Fixed& Fixed::min(const Fixed &  a, const Fixed & b )
 {
-	if (a._value <= b._value)
+	if (a <= b)
 		return a;
 	else
 		return b;
 }
 
-// Fixed& Fixed::max(Fixed& a, Fixed& b)
+// const Fixed& Fixed::max( Fixed &  a,  Fixed & b )
 // {
-// 	if (a._value >= b._value)
+// 	if (a >= b)
 // 		return a;
 // 	else
 // 		return b;
@@ -196,28 +192,14 @@ const Fixed& Fixed::min(const Fixed &  a, const Fixed & b ) //es cconst no podem
 
 const Fixed& Fixed::max(const Fixed &  a, const Fixed & b )
 {
-	if (a._value >= b._value)
+	if (a >= b)
 		return a;
 	else
-	{
 		return b;
-	}
 }
 
 std::ostream &	operator<<( std::ostream & o, Fixed const & rhs )
 {
 	o << rhs.toFloat();
 	return o;
-}
-
-std::ostream &	max( std::ostream & o, Fixed const & lhs, Fixed const & rhs )
-{
-	o << Fixed::max(lhs, rhs);
-	return	(o);
-}
-
-std::ostream &	min( std::ostream & o, Fixed const & lhs, Fixed const & rhs )
-{
-	o << Fixed::min(lhs, rhs);
-	return	(o);
 }

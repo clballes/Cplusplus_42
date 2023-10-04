@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-#include <bitset>
-
 
 const int	Fixed::_fractBits = 8;
 
@@ -66,7 +64,7 @@ int Fixed::toInt( void ) const
 
 float Fixed::toFloat( void ) const
 {
-	return (this->_value / pow(2, this->_fractBits));
+	return static_cast<float>(_value) / static_cast<float>(1 << _fractBits);
 }
 
 float Fixed::getRawBits( void ) const

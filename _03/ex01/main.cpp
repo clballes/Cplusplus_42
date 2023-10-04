@@ -2,8 +2,6 @@
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
-#include "FragTrap.hpp"
-
 
 int main()
 {
@@ -11,6 +9,7 @@ int main()
     ScavTrap hola("gabitrap");
 
     bob.attack("Christian");
+    hola.guardGate();
     // hola.attack();
     bob.takeDamage(6);
     bob.beRepaired(3);

@@ -18,8 +18,8 @@
 class Fixed
 {
 	private:
-		int _value; //integer part fixed point
-		static const int _fractBits; //integer part for fract bits
+		int _value;
+		static const int _fractBits;
 	public:
 		Fixed( void );
 		Fixed( const int num );
@@ -51,15 +51,13 @@ class Fixed
 		//members public min and maxs
 		const static Fixed& min(const Fixed &  a, const Fixed & b );
 		const static Fixed& max(const Fixed &  a, const Fixed & b );
+		const static Fixed& min( Fixed &  a, Fixed & b );
+		const static Fixed& max( Fixed &  a, Fixed & b );
 
 		float 	toFloat( void ) const;
 		int 	toInt( void ) const;
 		float 	getRawBits( void ) const;
  		void 	setRawBits( int const raw );
 };
-
 std::ostream &	operator<<( std::ostream & o, Fixed const & rhs );
-std::ostream &	min( std::ostream & o, Fixed const & lhs, Fixed const & rhs );
-std::ostream &	max( std::ostream & o, Fixed const & lhs, Fixed const & rhs );
-
 #endif
