@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: clballes <clballes@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/05 14:54:04 by clballes          #+#    #+#             */
+/*   Updated: 2023/10/05 14:54:05 by clballes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
@@ -63,7 +74,6 @@ void ClapTrap::attack(const std::string& target)
         std::cout << "cannot attack bc there is no more hit points: " << this->_hitPoints << std::endl;
         return ;
     }
-    this->_attackDamage++;
     this->_energyPoints--;
     std::cout << "ClapTrap: " << _name << " attacks: " <<  target << " points of damage: " << this->_attackDamage << std::endl;
 }

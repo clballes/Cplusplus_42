@@ -63,7 +63,6 @@ void ClapTrap::attack(const std::string& target)
         std::cout << "cannot attack bc there is no more hit points: " << this->_hitPoints << std::endl;
         return ;
     }
-    this->_attackDamage++;
     this->_energyPoints--;
     std::cout << "ClapTrap: " << _name << " attacks: " <<  target << " points of damage: " << this->_attackDamage << std::endl;
 }

@@ -1,7 +1,6 @@
 #ifndef __FRAG_TRAP_H__
 # define __FRAG_TRAP_H__
 
-#include <iostream>
 #include "ClapTrap.hpp"
 
 class FragTrap : public virtual ClapTrap

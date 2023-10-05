@@ -1,7 +1,6 @@
 #ifndef __DIAMOND_TRAP_H__
 # define __DIAMOND_TRAP_H__
 
-#include <iostream>
 #include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 

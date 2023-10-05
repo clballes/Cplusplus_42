@@ -4,7 +4,6 @@
 #include "Dog.hpp"
 
 
-
 int main()
 {
     const Animal* meta = new Animal("soyo");

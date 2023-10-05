@@ -1,7 +1,6 @@
 #ifndef __SCAV_TRAP_H__
 # define __SCAV_TRAP_H__
 
-#include <iostream>
 #include "ClapTrap.hpp"
 
 class ScavTrap : public virtual ClapTrap
