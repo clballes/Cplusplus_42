@@ -2,6 +2,7 @@
 
 
 #include "Dog.hpp"
+#include "Brain.hpp"
 
 
 Dog::Dog(void) : Animal("Dog")

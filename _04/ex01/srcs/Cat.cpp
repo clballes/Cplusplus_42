@@ -1,11 +1,11 @@
 
 
 #include "Cat.hpp"
-
+#include "Brain.hpp"
 
 Cat::Cat(void) : Animal("Cat")
 {
-    	this->_brain = new Brain();
+    this->_brain = new Brain();
     std::cout << "Default constructor Cat called" << std::endl;
 }
 

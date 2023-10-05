@@ -1,7 +1,6 @@
 #ifndef __ANIMAL_H__
 # define __ANIMAL_H__
 
-#include <iostream>
 #include "Brain.hpp"
 
 class Animal {

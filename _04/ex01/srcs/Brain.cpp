@@ -16,11 +16,11 @@ Brain::Brain(Brain const & src)
 
 Brain & Brain::operator=(Brain const & rhs)
 {
-    std::cout << "Operator overload Brain called" << std::endl;
-    for(int i = 0, i < 100, i++)
-    {
-        _ideas[i] = rhs.getIdeas[i].();
-    }
+    std::cout << "Operator overload Brain called" << rhs.getIdeas() << std::endl;
+    // for(int i = 0, i < 100, i++)
+    // {
+    //     _ideas[i] = rhs.getIdeas[i].();
+    // }
 	return *this;
 }
 
@@ -30,7 +30,7 @@ Brain::~Brain()
 }
 
 //get ideas
-std::string	getIdeas( ) const
+std::string	Brain::getIdeas( ) const
 {
-    return _ideas;
+    return _ideas[9];
 }
