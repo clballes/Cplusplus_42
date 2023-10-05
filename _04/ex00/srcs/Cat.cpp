@@ -8,12 +8,6 @@ Cat::Cat(void) : Animal("Cat") {
     std::cout << "Default constructor Cat called" << std::endl;
 
 }
-// {
-//     name = "cat";
-//     this->_type = name;
-//     // if (this->_type.empty())
-//     //     name = "cat";
-// }
 
 Cat::Cat(Cat const & src)
 {

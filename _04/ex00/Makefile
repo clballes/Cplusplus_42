@@ -14,10 +14,11 @@ NAME = Animals
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
-
+SRC = srcs/
+INC = inc/
 # Sources
-SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp
-LIB =  Animal.hpp Dog.hpp Cat.hpp 
+SRCS = $(SRC)main.cpp $(SRC)Animal.cpp $(SRC)Dog.cpp $(SRC)Cat.cpp $(SRC)WrongCat.cpp $(SRC)WrongAnimal.cpp
+LIB =  $(INC)Animal.hpp $(INC)Dog.hpp $(INC)Cat.hpp $(INC)WrongCat.hpp $(INC)WrongAnimal.hpp
 
 # create obj and resources
 OBJ = $(SRCS:%.cpp=%.o)
@@ -28,7 +29,7 @@ $(NAME): $(OBJ) $(LIB)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
-	$(CC) -I. -c $(CFLAGS) -MMD $< -o $@
+	$(CC) -I$(INC) -c $(CFLAGS) -MMD $< -o $@
 
 clean:
 	$(RM) $(NAME) $(OBJ) $(DEPS)
