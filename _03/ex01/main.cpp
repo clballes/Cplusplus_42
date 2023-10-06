@@ -4,12 +4,12 @@
 
 int main()
 {
-    ClapTrap clap("Gabi");
-    ScavTrap scav("gabitrap");
+    ClapTrap clap("Gabi clap");
+    ScavTrap scav("gabi scav");
 
-    clap.attack("Christian");
-    scav.guardGate();
-    // hola.attack();
-    scav.takeDamage(6);
-    clap.beRepaired(3);
+    // clap.attack("Christian");
+    // scav.guardGate();
+    // // hola.attack();
+    // scav.takeDamage(6);
+    // clap.beRepaired(3);
 }

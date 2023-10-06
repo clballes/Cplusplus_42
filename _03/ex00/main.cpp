@@ -14,8 +14,10 @@
 
 int main()
 {
-    ClapTrap bob("Gabi");
+    ClapTrap bob;
+    ClapTrap bob2( bob );
 
+	std::cout << bob2.getHitPoints() << std::endl;
     bob.attack("Christian");
     bob.takeDamage(6);
     bob.beRepaired(3);

@@ -2,14 +2,14 @@
 #include "ClapTrap.hpp"
 
 //Constructor calleddd!!
-ClapTrap::ClapTrap( void )
+ClapTrap::ClapTrap( void ) : _name("Default"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-    std::cout << "Default Constructor called in Clap Trap" << std::endl;
+    std::cout << "Default Constructor called " << this->_name <<std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-    std::cout << "Constructor called in Clap Trap" << std::endl;
+    std::cout << "Constructor called in Clap Trap: " << this->_name << std::endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap const & src)

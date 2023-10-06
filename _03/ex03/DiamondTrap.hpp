@@ -13,6 +13,7 @@ class DiamondTrap : public FragTrap, public ScavTrap
         DiamondTrap(DiamondTrap const & src);
         DiamondTrap & operator=(DiamondTrap const & rhs);
         void whoAmI();
+		void attack(const std::string& target);
         ~DiamondTrap();
 
     private:

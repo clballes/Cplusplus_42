@@ -7,10 +7,12 @@
 int main()
 {
     DiamondTrap problem("Clara");
-    problem.whoAmI();
+    // problem.whoAmI();
+    problem.attack("Scav");
 
     // ClapTrap bob("Gabi");
-    // ScavTrap hola("gabitrap");
+    // ScavTrap hola("gabiscav");
+	// hola.attack("Clara");
     // FragTrap klk("guapito");
     // klk.highFivesGuys();
     // bob.attack("Christian");

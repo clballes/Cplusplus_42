@@ -43,3 +43,7 @@ void DiamondTrap::whoAmI( void )
     std::cout << "Clap trap in Diamond trap is " << this->ClapTrap::_name << std::endl;
 }
 
+void	DiamondTrap::attack(const std::string& target)
+{
+	ScavTrap::attack(target);
+}
