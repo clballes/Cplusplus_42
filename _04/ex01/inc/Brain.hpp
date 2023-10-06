@@ -11,8 +11,8 @@ class Brain {
         Brain & operator=(Brain const & rhs);
         ~Brain();
 
-        std::string	getIdeas(  ) const;
-	    // void		setIdeas( int i, std::string idea );
+        std::string	getIdeas( int idx ) const;
+	    void		setIdeas( int i, std::string idea );
 
     protected:
         std::string _ideas[100];

@@ -3,7 +3,6 @@
 Brain::Brain(void)
 {
     std::cout << "Default constructor Brain called" << std::endl;
-
 }
 
 Brain::Brain(Brain const & src)
@@ -16,11 +15,11 @@ Brain::Brain(Brain const & src)
 
 Brain & Brain::operator=(Brain const & rhs)
 {
-    std::cout << "Operator overload Brain called" << rhs.getIdeas() << std::endl;
-    // for(int i = 0, i < 100, i++)
-    // {
-    //     _ideas[i] = rhs.getIdeas[i].();
-    // }
+    std::cout << "Operator overload Brain called" << std::endl;
+    for(int i = 0; i < 10; i++)
+    {
+        this->_ideas[i] = rhs.getIdeas(i);
+    }
 	return *this;
 }
 
@@ -30,7 +29,14 @@ Brain::~Brain()
 }
 
 //get ideas
-std::string	Brain::getIdeas( ) const
+std::string	Brain::getIdeas(int idx) const
 {
-    return _ideas[9];
+    return this->_ideas[idx];
 }
+
+//set ideas
+void		Brain::setIdeas( int i, std::string idea )
+{
+    this->_ideas[i] = idea;
+}
+

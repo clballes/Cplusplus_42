@@ -12,7 +12,6 @@ Dog::Dog(void) : Animal("Dog")
 
 }
 
-
 Dog::Dog(Dog const & src)
 {
     std::cout << "Default copy assigment Dog called" << std::endl;
@@ -25,6 +24,7 @@ Dog & Dog::operator=(Dog const & rhs)
 {
     std::cout << "Operator overload Dog called" << std::endl;
     Animal::_type = rhs.getType();
+	this->_brain = new Brain();
 	return *this;
 }
 
