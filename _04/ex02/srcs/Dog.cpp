@@ -5,7 +5,7 @@
 #include "Brain.hpp"
 
 
-Dog::Dog(void) : Animal("Dog")
+Dog::Dog(void) : AAnimal("Dog")
 {
     this->_brain = new Brain();
     std::cout << "Default constructor Dog called" << std::endl;
@@ -23,7 +23,7 @@ Dog::Dog(Dog const & src)
 Dog & Dog::operator=(Dog const & rhs)
 {
     std::cout << "Operator overload Dog called" << std::endl;
-    Animal::_type = rhs.getType();
+    AAnimal::_type = rhs.getType();
 	this->_brain = new Brain();
 	return *this;
 }

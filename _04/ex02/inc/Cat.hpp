@@ -1,9 +1,9 @@
 #ifndef __CAT_H__
 # define __CAT_H__
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
-class Cat : public Animal {
+class Cat : public AAnimal {
     public:
         Cat( void );
         Cat(Cat const & src);

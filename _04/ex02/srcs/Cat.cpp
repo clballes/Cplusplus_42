@@ -3,7 +3,7 @@
 #include "Cat.hpp"
 #include "Brain.hpp"
 
-Cat::Cat(void) : Animal("Cat")
+Cat::Cat(void) : AAnimal("Cat")
 {
     this->_brain = new Brain();
     std::cout << "Default constructor Cat called" << std::endl;
@@ -19,7 +19,7 @@ Cat::Cat(Cat const & src)
 Cat & Cat::operator=(Cat const & rhs)
 {
     std::cout << "Operator overload Cat called" << std::endl;
-    Animal::_type = rhs.getType();
+    AAnimal::_type = rhs.getType();
 	return *this;
 }
 
