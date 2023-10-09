@@ -5,7 +5,6 @@
 #include <iostream>
 #include "ICharacter.hpp"
 
-
 class AMateria
 {
     protected:

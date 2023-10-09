@@ -9,8 +9,8 @@ class Cure : public AMateria
 {
     public:
         Cure(std::string const & type);
-        virtual Cure* clone() const; // nose si calen q siguin virtuals
-        virtual void use(ICharacter& target); // nose si calen q siguin virtuals
+        virtual Cure* clone() const;
+        virtual void use(ICharacter& target);
         ~Cure();
 };
 
