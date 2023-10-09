@@ -8,6 +8,7 @@
 class Cure : public AMateria
 {
     public:
+		Cure( void );
         Cure(std::string const & type);
         virtual Cure* clone() const;
         virtual void use(ICharacter& target);

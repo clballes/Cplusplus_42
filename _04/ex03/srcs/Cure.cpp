@@ -1,5 +1,10 @@
 #include "Cure.hpp"
 
+Cure::Cure(void)
+{
+	std::cout << " constructor default cure " << std::endl;
+}
+
 Cure::Cure(std::string const & type) : AMateria(type)
 {
     std::cout << " CONSTRUCTOR CURE el type en cure es : " << type << std::endl;

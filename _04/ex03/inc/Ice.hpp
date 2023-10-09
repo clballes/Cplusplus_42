@@ -8,6 +8,7 @@
 class Ice : public AMateria
 {
     public:
+		Ice(void);
         Ice(std::string const & type);
         virtual Ice* clone() const; // nose si calen q siguin virtuals
         virtual void use(ICharacter& target); // nose si calen q siguin virtuals

@@ -1,5 +1,11 @@
 #include "Ice.hpp"
 
+
+Ice::Ice(void)
+{
+	std::cout << " constructor default Ice " << std::endl;
+}
+
 Ice::Ice(std::string const & type) : AMateria(type)
 {
     std::cout << " CONSTRUCTOR Ice el type en Ice es : " << type << std::endl;

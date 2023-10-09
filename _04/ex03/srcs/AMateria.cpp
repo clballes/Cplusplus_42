@@ -1,6 +1,11 @@
 
 #include "AMateria.hpp"
 
+AMateria::AMateria(void)
+{
+	std:: cout << "Defautl constructor materia class" << std::endl;
+}
+
 AMateria::AMateria(std::string const & type) : _type(type) {}
 
 std::string const & AMateria::getType() const
@@ -19,3 +24,4 @@ AMateria::~AMateria()
     std::cout << "Destructor AMateria" << std::endl;
     return;
 }
+

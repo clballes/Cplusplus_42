@@ -17,9 +17,8 @@ RM = rm -rf
 SRC = srcs/
 INC = inc/
 # Sources
-SRCS = $(SRC)main.cpp $(SRC)AMateria.cpp $(SRC)Cure.cpp $(SRC)Character.cpp $(SRC)Ice.cpp
-LIB =  $(INC)AMateria.hpp $(INC)Cure.hpp $(INC)ICharacter.hpp $(INC)Ice.hpp $(INC)Character.hpp
-
+SRCS = $(SRC)main.cpp $(SRC)AMateria.cpp $(SRC)Cure.cpp $(SRC)Character.cpp $(SRC)Ice.cpp $(SRC)MateriaSource.cpp
+LIB =  $(INC)AMateria.hpp $(INC)Cure.hpp $(INC)ICharacter.hpp $(INC)Ice.hpp $(INC)Character.hpp $(INC)MateriaSource.hpp $(INC)IMateriaSource.hpp
 # create obj and resources
 OBJ = $(SRCS:%.cpp=%.o)
 DEPS = $(SRCS:%.cpp=%.d)

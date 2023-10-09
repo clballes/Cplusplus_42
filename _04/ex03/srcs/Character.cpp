@@ -21,8 +21,20 @@ Character::Character(Character const & src)
 Character & Character::operator=(Character const & rhs)
 {
 	std::cout << "Copy operation overload called" << std::endl;
-	rhs.getName();
-	//fer deep copies 
+	if (this != &rhs)
+	{
+		for (int i = 0; i < 4; i++)
+			delete _inventory[i];
+	}
+	_name = rhs.getName();
+
+	for (int i = 0; i < 4; i++)
+	{	
+		if (rhs._inventory[i] != nullptr)
+			_inventory[i] = rhs._inventory[i]->clone();
+		else
+			_inventory[i] = nullptr;
+	}
 	return *this;
 }
 
@@ -30,7 +42,10 @@ void Character::equip(AMateria* m)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		_inventory[i] = m;
+		if (_inventory[i] == nullptr)
+			_inventory[i] = m;
+		else
+			return ;
 	}
 }
 
@@ -41,7 +56,11 @@ std::string const & Character::getName() const
 
 void Character::unequip(int idx)
 {
-	std::cout << "unequip el idx" << idx << std::endl;
+	if (idx >= 0 && idx < 4 && _inventory[idx] != nullptr)
+	{
+		std::cout << "unequip el idx: " << idx << std::endl;
+		_inventory[idx] = nullptr;
+	}
 	return ;
 }
 
@@ -59,9 +78,14 @@ void Character::use(int idx, ICharacter& target)
 
 Character::~Character()
 {
-	// for (int i = 0; i < 4; i++)
-	// {
-	// 	delete _inventory[i];
-	// }
-	std::cout << "Destructor for Character CALLED" << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		if (_inventory[i] != nullptr)
+		{
+			std::cout << "Destructor for Character CALLED" << std::endl;
+			delete _inventory[i];
+			// _inventory[i] = nullptr;  // Set to nullptr after deletion
+
+		}
+	}
 }
