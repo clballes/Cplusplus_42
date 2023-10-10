@@ -14,7 +14,7 @@ class Character : public ICharacter
 		std::string _name;
 
     public:
-        Character(std::string name);
+        Character(std::string const &name);
 		Character(Character const & src);
         Character & operator=(Character const & rhs);
         

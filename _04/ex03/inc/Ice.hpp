@@ -1,6 +1,6 @@
 
-#ifndef __Ice_H__
-# define __Ice_H__
+#ifndef __ICE_H__
+# define __ICE_H__
 
 #include "AMateria.hpp"
 #include "ICharacter.hpp"
@@ -9,10 +9,12 @@ class Ice : public AMateria
 {
     public:
 		Ice(void);
-        Ice(std::string const & type);
-        virtual Ice* clone() const; // nose si calen q siguin virtuals
-        virtual void use(ICharacter& target); // nose si calen q siguin virtuals
+        Ice( Ice const & );
+        Ice& operator=( Ice const & );
         ~Ice();
+
+        virtual AMateria* clone() const; // nose si calen q siguin virtuals
+        virtual void use(ICharacter& target); // nose si calen q siguin virtuals
 };
 
 #endif

@@ -1,18 +1,31 @@
 #include "Ice.hpp"
 
-
-Ice::Ice(void)
+Ice::Ice(void) : AMateria("ice")
 {
-	std::cout << " constructor default Ice " << std::endl;
+	std::cout << "Default constructor ICE" << std::endl;
 }
 
-Ice::Ice(std::string const & type) : AMateria(type)
+Ice::Ice( Ice const & src ) : AMateria("ice")
 {
-    std::cout << " CONSTRUCTOR Ice el type en Ice es : " << type << std::endl;
-    return ;
+    *this = src;
 }
 
-Ice* Ice::clone() const
+Ice& Ice::operator=( Ice const & rhs)
+{
+    if (this != &rhs)
+    {
+         this->_type = rhs._type;
+    }
+    return *this;
+}
+
+// Ice::Ice(std::string const & type) : AMateria(type)
+// {
+//     std::cout << "Constructor ICE - type:" << type << std::endl;
+//     return ;
+// }
+
+AMateria* Ice::clone() const
 {
     return new Ice(*this);
 }
@@ -25,6 +38,6 @@ void Ice::use(ICharacter& target)
 
 Ice::~Ice()
 {
-    std::cout << "Destructor Ice" << std::endl;
+    std::cout << "Destructor ICE" << std::endl;
     return;
 }

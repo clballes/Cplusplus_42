@@ -14,9 +14,13 @@ class MateriaSource : public IMateriaSource
 
 	public:
 		MateriaSource( void );
+        MateriaSource( MateriaSource const & );
+        MateriaSource&  operator=( MateriaSource const & );
 		virtual ~MateriaSource();
-		void learnMateria(AMateria*);
-		AMateria* createMateria(std::string const & type);
+
+		void 		learnMateria(AMateria*);
+		AMateria*	createMateria(std::string const & type);
+        AMateria*	getMateria( std::string const & type );
 };
 
 #endif

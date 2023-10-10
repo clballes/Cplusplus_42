@@ -1,23 +1,28 @@
 
 #include "AMateria.hpp"
 
-AMateria::AMateria(void)
+AMateria::AMateria(void) : _type("")
 {
-	std:: cout << "Defautl constructor materia class" << std::endl;
+	std:: cout << "Default constructor Amateria class" << std::endl;
 }
 
 AMateria::AMateria(std::string const & type) : _type(type) {}
 
 std::string const & AMateria::getType() const
 {
-    return _type;
+    return this->_type;
+}
+
+AMateria::AMateria( AMateria const & src )
+{
+    *this = src;
 }
 
 void AMateria::use(ICharacter& target)
 {
-    std::cout << target.getName() << " the target is use" << std::endl;
-    return ;
+    std::cout << "AMateria " << this->_type << " used on " << target.getName() << std::endl;
 }
+
 
 AMateria::~AMateria()
 {
