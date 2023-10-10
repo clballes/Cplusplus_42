@@ -35,12 +35,23 @@ ScavTrap & ScavTrap::operator=(ScavTrap const & rhs)
 
 ScavTrap::~ScavTrap( void )
 {
-    std::cout << "ScavTrap Destructor called" << std::endl;
+    std::cout << "Destructor ScavTrap called" << std::endl;
 }
 
 //functions
 
+void    ScavTrap::attack( std::string const& target )
+{
+    if ( this->_energyPoints <= 0 )
+    {
+        std::cout << "ScavTrap: " << this->_name << " is out of energy." << std::endl;
+        return;
+    }
+    std::cout << "ScavTrap: " << this->_name << " attacks " << target << " at range, causing " << this->_attackDamage << " points of damage !" << std::endl;
+    this->_energyPoints--;
+}
+
 void ScavTrap::guardGate( void )
 {
-    std::cout << "ScavTrap is now in Gate keeper mode." << std::endl;
+    std::cout << "ScavTrap: " << this->_name << " is now in Gate keeper mode." << std::endl;
 }

@@ -6,17 +6,19 @@
 
 int main()
 {
-    DiamondTrap problem("Clara");
-    // problem.whoAmI();
-    problem.attack("Scav");
+    DiamondTrap diamond("Clara_Diamond");
+    diamond.whoAmI();
+    diamond.attack("Scav");
 
-    // ClapTrap bob("Gabi");
-    // ScavTrap hola("gabiscav");
-	// hola.attack("Clara");
-    // FragTrap klk("guapito");
-    // klk.highFivesGuys();
-    // bob.attack("Christian");
-    // hola.attack();
-    // bob.takeDamage(6);
-    // bob.beRepaired(3);
+    ClapTrap clap("Gabi_Clap");
+    ScavTrap scav("Clara_Scav");
+	scav.attack("Clara");
+    FragTrap frag("Christian_Frag");
+    frag.highFivesGuys();
+    diamond.attack("Gabi_Clap");
+    frag.attack("Gabi_Clap");
+
+    scav.attack("Gabi_Clap");
+    clap.takeDamage(6);
+    clap.beRepaired(3);
 }

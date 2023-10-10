@@ -5,12 +5,21 @@
 
 int main()
 {
-    ClapTrap bob("Gabi");
-    // ScavTrap hola("gabitrap");
-    FragTrap klk("guapito");
-    klk.highFivesGuys();
+    ClapTrap clap("Alex_Clap");
+    ScavTrap scav("Gabriel_Scav");
+    FragTrap frag("Clara_Frag");
+    frag.highFivesGuys();
     // bob.attack("Christian");
     // hola.attack();
     // bob.takeDamage(6);
     // bob.beRepaired(3);
+
+
+    clap.attack("Gabriel");
+    scav.attack("Alex");
+    scav.guardGate();
+    frag.takeDamage(6);
+    scav.beRepaired(10);
+    clap.takeDamage(20);
+    frag.takeDamage(200);
 }

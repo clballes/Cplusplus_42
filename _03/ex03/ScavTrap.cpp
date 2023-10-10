@@ -8,12 +8,12 @@ ScavTrap::ScavTrap (void) : ClapTrap()
     std::cout << "Default constructor ScavTrap called" << std::endl;
 }
 
-ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)
+ScavTrap::ScavTrap(const std::string& name): ClapTrap(name)
 {
     this->_hitPoints = 100;
     this->_energyPoints = 50;
     this->_attackDamage = 20;
-    std::cout << "ScavTrap Constructor called for " << _name << std::endl;
+    std::cout << "Constructor ScavTrap called for " << _name << std::endl;
 }
 
 ScavTrap::ScavTrap(ScavTrap const & src)
@@ -35,12 +35,23 @@ ScavTrap & ScavTrap::operator=(ScavTrap const & rhs)
 
 ScavTrap::~ScavTrap( void )
 {
-    std::cout << "ScavTrap Destructor called" << std::endl;
+    std::cout << "Destructor ScavTrap called" << std::endl;
 }
 
-//fucitons
+//functions
+
+void    ScavTrap::attack( std::string const& target )
+{
+    if ( this->_energyPoints <= 0 )
+    {
+        std::cout << "ScavTrap: " << this->_name << " is out of energy." << std::endl;
+        return;
+    }
+    std::cout << "ScavTrap: " << this->_name << " attacks " << target << " at range, causing " << this->_attackDamage << " points of damage !" << std::endl;
+    this->_energyPoints--;
+}
 
 void ScavTrap::guardGate( void )
 {
-    std::cout << "ScavTrap is now in Gate keeper mode." << std::endl;
+    std::cout << "ScavTrap: " << this->_name << " is now in Gate keeper mode." << std::endl;
 }

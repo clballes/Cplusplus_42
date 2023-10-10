@@ -32,12 +32,12 @@ FragTrap & FragTrap::operator=(FragTrap const & rhs)
 
 FragTrap::~FragTrap()
 {
-    std::cout << " Deconstructor called in Frag trap" << std::endl;    
+    std::cout << "Deconstructor called in Frag trap" << std::endl;    
 }
 
 //functions
 
 void FragTrap::highFivesGuys(void)
 {
-    std::cout << "High five with me!!  ✋ ✋ ✋" << std::endl;
+    std::cout << "✋ " << "High five with " << this->_name <<  " ✋" << std::endl;
 }

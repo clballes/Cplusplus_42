@@ -39,8 +39,8 @@ DiamondTrap::~DiamondTrap( void )
 
 void DiamondTrap::whoAmI( void )
 {
-    std::cout << "The name is " << _name << std::endl;
-    std::cout << "Clap trap in Diamond trap is " << this->ClapTrap::_name << std::endl;
+    std::cout << "DiamondTrap name is: " << _name << std::endl;
+    std::cout << "Clap trap is: " << this->ClapTrap::_name << std::endl;
 }
 
 void	DiamondTrap::attack(const std::string& target)

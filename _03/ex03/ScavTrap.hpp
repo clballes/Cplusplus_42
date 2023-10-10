@@ -6,12 +6,14 @@
 class ScavTrap : public virtual ClapTrap
 {
     public:
-        ScavTrap( void );
+       ScavTrap( void );
         ScavTrap(const std::string& name);
         ScavTrap(ScavTrap const & src);
         ScavTrap & operator=(ScavTrap const & rhs);
-        void guardGate( void );
         ~ScavTrap();
+
+        void attack( std::string const& target );
+        void guardGate( void );
 };
 
 #endif

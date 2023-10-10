@@ -42,7 +42,7 @@ ClapTrap & ClapTrap::operator=(ClapTrap const & rhs)
 
 ClapTrap::~ClapTrap( void )
 {
-    std::cout << "Destructor called" << std::endl;
+    std::cout << "Destructor called ClapTrap" << std::endl;
 }
 
 // getter function
@@ -75,7 +75,7 @@ void ClapTrap::attack(const std::string& target)
         return ;
     }
     this->_energyPoints--;
-    std::cout << "ClapTrap: " << _name << " attacks: " <<  target << " points of damage: " << this->_attackDamage << std::endl;
+    std::cout << "ClapTrap: " << _name << " attacks: " <<  target << " points of damage: " << this->_attackDamage << " & energy points are: "<< this->_energyPoints << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
@@ -83,22 +83,24 @@ void ClapTrap::takeDamage(unsigned int amount)
     if (this->_hitPoints >= amount)
     {
         this->_hitPoints -= amount;
-        std::cout << "ClapTrap " << this->_name << " took damage, its hit points after the damage are " << this->_hitPoints << std::endl;
+        std::cout << "ClapTrap: " << this->_name << " took damage: " << amount << " its hit points after the damage are " << this->_hitPoints << std::endl;
     }
     else
     {
         this->_hitPoints = 0;
-        std::cout << "ClapTrap " << this->_name << " took damage, its hit points after the damage are " << this->_hitPoints << std::endl; 
+        std::cout << "ClapTrap " << this->_name << " is dead!" << " hit points are: " << this->_hitPoints << " but still have energy points to be repaired: " << this->_energyPoints << std::endl;
+        return ;
     }
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-    if ( this->_energyPoints <= 0)
+    if ( this->_energyPoints <= amount)
     {
-        std::cout << "cannot be repaired bc there is no more energy points: " << this->_energyPoints << std::endl;
+        std::cout << "ClapTrap " << this->_name << " is out of energy!" << std::endl;
+        return ;
     }
     this->_energyPoints--;
     this->_hitPoints += amount;
-    std::cout << "ClapTrap " << this->_name << " was repaired, its hit points after repair are " << this->_hitPoints << std::endl;
+    std::cout << "ClapTrap: " << this->_name << " was repaired, its hit points after repair are " << this->_hitPoints << " & energy points are: "<< this->_energyPoints << std::endl;
 }
