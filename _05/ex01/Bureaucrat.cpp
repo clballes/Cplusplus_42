@@ -3,7 +3,7 @@
 
 Bureaucrat::Bureaucrat( void )
 {
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << "Default constructor called Bureaucrat" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
@@ -88,6 +88,27 @@ void Bureaucrat::decrementGrade()
 		std::cout << "Caught exception: " << e.what() << std::endl;
 	}
 }
+
+
+void Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+    	if (form.getBool() == true)
+		{
+        	std::cout << "Bureaucrat's name: " << getName() << " signed " << "Form name: " << form.getName() << std::endl;
+		}
+		else
+			throw Form::GradeTooLowException();
+
+	}
+    catch(const Form::GradeTooLowException& e)
+	{
+        std::cout << "Bureaucrat's name: " << getName()  << " couldn't sign " << form.getName() << " because "<< e.what() << std::endl;
+	}
+}
+
+
 //getters
 
 std::string Bureaucrat::getName() const
