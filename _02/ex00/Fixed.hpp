@@ -24,6 +24,7 @@ class Fixed
 		Fixed( Fixed const & src );
 		Fixed & operator=(Fixed const & srcs);
 		~Fixed( void );
+		
 		int getRawBits( void ) const;
  		void setRawBits( int const raw );
 };

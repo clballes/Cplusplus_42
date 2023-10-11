@@ -37,4 +37,5 @@ class Fixed
 };
 
 std::ostream &	operator<<( std::ostream & o, Fixed const & rhs );
+
 #endif
