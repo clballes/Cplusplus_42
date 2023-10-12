@@ -1,33 +1,45 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form(void) : _name("Default"), _signed("false"), _gradeSigned(8) , _gradeExecute(3)
+Form::Form(void) : _name("Default"), _ifSigned("false"), _gradeToSign(0) , _gradeToExecute(0)
 {
 	std::cout << "Default constructor called Form" << std::endl;
-    this->_signed = false;
+    this->_ifSigned = false;
 }
 
-Form::Form(const std::string& name, int gradeToSign, int gradeToExecute) : _name(name), _signed(false), _gradeSigned(gradeToSign), _gradeExecute(gradeToExecute)
+Form::Form(const std::string& name, int gradeToSign, int gradeToExecute) : _name(name), _ifSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
-    if (_gradeSigned < 1 || _gradeExecute < 1)
-        throw Form::GradeTooHighException();
-    if (_gradeSigned > 150 || _gradeExecute > 150)
-        throw Form::GradeTooLowException();
+	std::cout << "Constructor called Form: " << this->_name << " gradeToSign: " << this->_gradeToSign << " gradeToExceute: " << this->_gradeToExecute << std::endl;
+	try
+    {
+        if (_gradeToSign < 1 || _gradeToExecute < 1)
+        	throw Form::GradeTooHighException();
+    	if (_gradeToSign > 150 || _gradeToExecute > 150)
+        	throw Form::GradeTooLowException();
+    }
+    catch(const Form::GradeTooLowException& e)
+    {
+		std::cout << "Form exception: " << e.what() << ", try other numbers to initialize between 1 - 150" << std::endl;
+    }
+    catch(const Form::GradeTooHighException& e)
+	{
+		std::cout << "Form exception: " << e.what() << ", try other numbers to initialize between 1 - 150" << std::endl;
+	}
 }
 
-// Form::Form(Form const & src)
-// {
-//     std::cout << "Copy Constructor called Form" << std::endl;
-// 	*this = src;
-// 	return ;
-// }
+Form::Form(Form const & src) : _name("Default"), _ifSigned("false"), _gradeToSign(getGradeSigned()) , _gradeToExecute(getGradeExecuted())
+{
+    std::cout << "Copy Constructor called Form" << std::endl;
+	*this = src;
+	return ;
+}
 
 Form & Form::operator=(Form const & rhs)
 {
      std::cout << "Operator overload called Form";
 	 if ( this != &rhs )
      {
-        this->_signed = false;
+        this->_ifSigned = false;
      }
 	return *this;
 }
@@ -37,22 +49,23 @@ Form::~Form()
 	std::cout << "Destructor called Form" << std::endl;
 }
 
-//member fcuntions
+//member functions
 
 void Form::beSigned( Bureaucrat const & rhs)
 {
     try
     {
-        if (rhs.getGrade() < this->_gradeSigned)
+        if (rhs.getGrade() >= this->_gradeToSign)
         {
-            this->_signed = true;
+            this->_ifSigned = true;
+			std::cout << "BeSigned: Form is going to be signed" << std::endl;
         }
         else
-            throw GradeTooLowException();
+            throw Form::GradeTooLowException();
     }
-    catch(const GradeTooLowException& e)
+    catch(const Form::GradeTooLowException& e)
     {
-		std::cout << "Caught exception: " << e.what() << std::endl;
+		std::cout << "BeSigned exception: " << e.what() << " to be signed" << std::endl;
     }
 }
 
@@ -64,23 +77,23 @@ std::string Form::getName() const
 
 bool Form::getBool() const
 {
-    return this->_signed;
+    return this->_ifSigned;
 }
 
 int Form::getGradeExecuted() const
 {
-    return this->_gradeExecute;
+    return this->_gradeToExecute;
 }
 
 int Form::getGradeSigned() const
 {
-    return this->_gradeSigned;
+    return this->_gradeToSign;
 }
 
 
 std::ostream &	operator<<( std::ostream & o, Form const & rhs )
 {
-	o << rhs.getName() <<": Form grade: " << rhs.getGradeSigned() << "Form grede executed: " << rhs.getGradeExecuted() 
-    << "Boolean grade signed: " << rhs.getBool() << std::endl;
+	o << "Form's name: " << rhs.getName() <<" || Grade required to sign form: " << rhs.getGradeSigned() << " || Grade required to execute the form: " << rhs.getGradeExecuted() 
+    << " || Is it the form signed? " << std::boolalpha << rhs.getBool() << " ||" << std::endl;
 	return o;
 }

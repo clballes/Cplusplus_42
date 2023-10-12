@@ -1,4 +1,5 @@
-#include "Bureaucrat.hpp"
+#include "../inc/Bureaucrat.hpp"
+
 #include <stdexcept>
 
 Bureaucrat::Bureaucrat( void )
@@ -88,21 +89,21 @@ void Bureaucrat::decrementGrade()
 }
 
 
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signForm(AForm &Aform)
 {
 	try
 	{
-    	if (form.getBool() == true)
+    	if (Aform.getBool() == true)
 		{
-        	std::cout << "Bureaucrat's name: " << getName() << " signed " << "Form name: " << form.getName() << std::endl;
+        	std::cout << "Bureaucrat's name: " << getName() << " signed " << "AForm name: " << Aform.getName() << std::endl;
 		}
 		else
-			throw Form::GradeTooLowException();
+			throw AForm::GradeTooLowException();
 
 	}
-    catch(const Form::GradeTooLowException& e)
+    catch(const AForm::GradeTooLowException& e)
 	{
-        std::cout << "Bureaucrat's name: " << getName()  << " couldn't sign " << form.getName() << " because "<< e.what() << std::endl;
+        std::cout << "Bureaucrat's name: " << getName()  << " couldn't sign " << Aform.getName() << " because "<< e.what() << std::endl;
 	}
 }
 
