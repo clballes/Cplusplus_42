@@ -17,8 +17,8 @@ RM = rm -rf
 SRC = srcs/
 INC = inc/
 # Sources
-SRCS = $(SRC)main.cpp $(SRC)Bureaucrat.cpp $(SRC)AForm.cpp $(SRC)ShrubberyCreationForm.cpp
-LIB = $(INC)Bureaucrat.hpp $(INC)AForm.hpp $(INC)ShrubberyCreationForm.hpp
+SRCS = $(SRC)main.cpp $(SRC)Bureaucrat.cpp $(SRC)AForm.cpp $(SRC)ShrubberyCreationForm.cpp $(SRC)RobotomyRequestForm.cpp $(SRC)PresidentialPardonForm.cpp
+LIB = $(INC)Bureaucrat.hpp $(INC)AForm.hpp $(INC)ShrubberyCreationForm.hpp $(INC)RobotomyRequestForm.hpp $(INC)PresidentialPardonForm.hpp
 
 # create obj and resources
 OBJ = $(SRCS:%.cpp=%.o)
@@ -32,7 +32,8 @@ $(NAME): $(OBJ) $(LIB)
 	$(CC) -I. -c $(CFLAGS) -MMD $< -o $@
 
 clean:
-	$(RM) $(NAME) $(OBJ) $(DEPS)
+	$(RM) $(NAME) $(OBJ) $(DEPS) *_shrubbery.txt
+
 fclean: clean
 
 re: fclean all

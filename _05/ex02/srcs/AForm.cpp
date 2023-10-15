@@ -70,20 +70,13 @@ void AForm::beSigned( Bureaucrat const & rhs)
 
 void AForm::execute(Bureaucrat const & executor) const
 {
-	try
+    if (this->_ifSigned == true  && (executor.getGrade() >= this->_gradeToExecute))
     {
-        if (this->_ifSigned == true  && (executor.getGrade() >= this->_gradeToExecute))
-        {
-			std::cout << "Execute: The form is going to be execute" << std::endl;
-        }
-        else
-        {
-            throw AForm::GradeTooLowException();
-        }
+        std::cout << "Execute: The form is going to be execute" << std::endl;
     }
-    catch(const AForm::GradeTooLowException& e)
+    else
     {
-		std::cout << "Execution exception: " << e.what() << "for the form to be executed" << std::endl;
+        throw AForm::GradeTooLowException();
     }
 }
 
