@@ -11,18 +11,6 @@ ShrubberyCreationForm::ShrubberyCreationForm(void)
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("default", 145, 137), _target(target)
 {
 	std::cout << "Constructor called ShrubberyCreationForm target: " << target << std::endl;
-	std::ofstream outfile (target + "_shrubbery.txt");
-	outfile << "       _-_       " << std::endl;
-	outfile << "    /~~   ~~\\   " << std::endl;
-	outfile << " /~~         ~~\\" << std::endl;
-	outfile << "{               }" << std::endl;
-	outfile << " \\  _-     -_  /" << std::endl;
-	outfile << "   ~  \\\\ //  ~ " << std::endl;
-	outfile << "_- -   | | _- _  " << std::endl;
-	outfile << "  _ -  | |   -_  " << std::endl;
-	outfile << "      // \\\\    " << std::endl;
-	outfile.close();
-	return ;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const & src)
@@ -47,17 +35,23 @@ std::string ShrubberyCreationForm::getTarget() const
 	return _target;
 }
 
-void ShrubberyCreationForm::executeS(Bureaucrat const & executor) const
+void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	try
     {
 		AForm::execute(executor);
-        // if (this->_ifSigned == true  && (executor.getGrade() >= this->_gradeToExecute))
-        // {
-		// 	std::cout << "Execute: The form is going to be execute" << std::endl;
-        // }
-        // else
-        //     throw AForm::GradeTooLowException();
+		std::ofstream outfile (this->_target + "_shrubbery.txt");
+		outfile << "       _-_       " << std::endl;
+		outfile << "    /~~   ~~\\   " << std::endl;
+		outfile << " /~~         ~~\\" << std::endl;
+		outfile << "{               }" << std::endl;
+		outfile << " \\  _-     -_  /" << std::endl;
+		outfile << "   ~  \\\\ //  ~ " << std::endl;
+		outfile << "_- -   | | _- _  " << std::endl;
+		outfile << "  _ -  | |   -_  " << std::endl;
+		outfile << "      // \\\\    " << std::endl;
+		outfile.close();
+		return ;
     }
     catch(const AForm::GradeTooLowException& e)
     {
@@ -65,9 +59,7 @@ void ShrubberyCreationForm::executeS(Bureaucrat const & executor) const
     }
 }
 
-
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 	std::cout << "Default destructor called for ShrubberyCreationForm" << std::endl;
-
 }

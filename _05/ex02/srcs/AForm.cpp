@@ -4,7 +4,6 @@
 AForm::AForm(void) : _name("Default"), _ifSigned("false"), _gradeToSign(0) , _gradeToExecute(0)
 {
 	std::cout << "Default constructor called AForm" << std::endl;
-    this->_ifSigned = false;
 }
 
 AForm::AForm(const std::string& name, int gradeToSign, int gradeToExecute) : _name(name), _ifSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
@@ -78,15 +77,13 @@ void AForm::execute(Bureaucrat const & executor) const
 			std::cout << "Execute: The form is going to be execute" << std::endl;
         }
         else
+        {
             throw AForm::GradeTooLowException();
+        }
     }
     catch(const AForm::GradeTooLowException& e)
     {
 		std::cout << "Execution exception: " << e.what() << "for the form to be executed" << std::endl;
-		std::cout <<  "KPASAAAAAAA --------" << executor.getGrade() << std::endl;
-		std::cout <<  "KPASAAAAAAA to execute this--------" << this->_gradeToExecute << std::endl;
-
-
     }
 }
 

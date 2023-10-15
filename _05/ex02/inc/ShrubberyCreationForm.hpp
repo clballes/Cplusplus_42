@@ -22,7 +22,7 @@ class ShrubberyCreationForm : public AForm
 		std::string getTarget() const;
 
 		//member functions
-		void executeS(Bureaucrat const & executor) const;
+		void execute(Bureaucrat const & executor) const;
 };
 
 // std::ostream &	operator<<( std::ostream & o, ShrubberyCreationForm const & rhs );
