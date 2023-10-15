@@ -107,6 +107,25 @@ void Bureaucrat::signForm(AForm &Aform)
 	}
 }
 
+void Bureaucrat::executeForm(Form const & form)
+{
+	try
+	{
+    	if (Aform.getBool() == true)
+		{
+			
+        	std::cout << "Bureaucrat's name: " << getName() << "executed" << "AForm name: " << Aform.getName() << std::endl;
+		}
+		else
+			throw AForm::GradeTooLowException();
+
+	}
+    catch(const AForm::GradeTooLowException& e)
+	{
+        std::cout << "Bureaucrat's name: " << getName()  << " couldn't be executed " << Aform.getName() << " because "<< e.what() << std::endl;
+	}
+}
+
 
 //getters
 

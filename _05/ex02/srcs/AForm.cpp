@@ -49,7 +49,6 @@ AForm::~AForm()
 }
 
 //member functions
-
 void AForm::beSigned( Bureaucrat const & rhs)
 {
     try
