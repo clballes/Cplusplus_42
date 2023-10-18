@@ -28,21 +28,6 @@ Character & Character::operator=(Character const & rhs)
             this->_inventory[i] = rhs._inventory[i];
     }
     return *this;
-	// if (this != &rhs)
-	// {
-	// 	for (int i = 0; i < 4; i++)
-	// 		delete _inventory[i];
-	// }
-	// this->_name = rhs._name;
-
-	// for (int i = 0; i < 4; i++)
-	// {	
-	// 	if (rhs._inventory[i] != nullptr)
-	// 		_inventory[i] = rhs._inventory[i]->clone();
-	// 	else
-	// 		_inventory[i] = nullptr;
-	// }
-	// return *this;
 }
 
 void Character::equip(AMateria* m)
@@ -74,13 +59,11 @@ void Character::unequip(int idx)
 	return ;
 }
 
-// The use(int, ICharacter&) member function will have to use the Materia at the
-// slot[idx], and pass the target parameter to the AMateria::use function.
 void Character::use(int idx, ICharacter& target)
 {
 	if (idx >= 0 && idx < 4 && _inventory[idx] != nullptr)
 	{
-		std::cout << "estoy function use in character" << idx << std::endl;
+		// std::cout << "estoy function use in character" << idx << std::endl;
 		_inventory[idx]->use(target);
 	}
 	else

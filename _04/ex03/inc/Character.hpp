@@ -17,13 +17,12 @@ class Character : public ICharacter
         Character(std::string const &name);
 		Character(Character const & src);
         Character & operator=(Character const & rhs);
+		virtual ~Character();
         
 		void equip(AMateria* m);
         void unequip(int idx);
         std::string const & getName() const;
-        void use(int idx, ICharacter& target);
-		
-		virtual ~Character();
+        void use(int idx, ICharacter& target);		
 };
 
 #endif

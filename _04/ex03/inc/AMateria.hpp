@@ -14,7 +14,7 @@ class AMateria
 		AMateria(void);
         AMateria(std::string const & type);
         AMateria( AMateria const & src );
-        //falta operator pero nose si cal preguntar classe abstarct canonical form 
+		AMateria & operator=( AMateria const & rhs);
         virtual ~AMateria();
         
         std::string const & getType() const;

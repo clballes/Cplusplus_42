@@ -19,7 +19,6 @@ Brain & Brain::operator=(Brain const & rhs)
     for(int i = 0; i < 10; i++)
     {
         this->_ideas[i] = rhs.getIdeas(i);
-        std::cout << "ideas are: " << rhs.getIdeas(i) << std::endl;
     }
 	return *this;
 }
@@ -39,6 +38,5 @@ std::string	Brain::getIdeas(int idx) const
 void		Brain::setIdeas( int i, std::string idea )
 {
     this->_ideas[i] = idea;
-    // std::cout << "ideas are: " << this->_ideas[i] << std::endl;
 }
 

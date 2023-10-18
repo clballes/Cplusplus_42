@@ -19,12 +19,6 @@ Ice& Ice::operator=( Ice const & rhs)
     return *this;
 }
 
-// Ice::Ice(std::string const & type) : AMateria(type)
-// {
-//     std::cout << "Constructor ICE - type:" << type << std::endl;
-//     return ;
-// }
-
 AMateria* Ice::clone() const
 {
     return new Ice(*this);

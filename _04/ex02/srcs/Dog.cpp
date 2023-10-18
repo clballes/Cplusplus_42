@@ -22,9 +22,12 @@ Dog::Dog(Dog const & src)
 
 Dog & Dog::operator=(Dog const & rhs)
 {
-    std::cout << "Operator overload Dog called" << std::endl;
+   std::cout << "Operator overload Dog called" << std::endl;
     AAnimal::_type = rhs.getType();
-	this->_brain = new Brain();
+	if (this->_brain)
+ 		delete this->_brain;
+    this->_brain = new Brain();
+    *this->_brain = rhs.getBrain();
 	return *this;
 }
 
@@ -34,7 +37,7 @@ Dog::~Dog()
     std::cout << "Default destructor Dog called" << std::endl;
 }
 
-Brain Dog::getBrain()
+Brain & Dog::getBrain() const
 {
     return *this->_brain;
 }

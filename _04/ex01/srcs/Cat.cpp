@@ -20,6 +20,10 @@ Cat & Cat::operator=(Cat const & rhs)
 {
     std::cout << "Operator overload Cat called" << std::endl;
     Animal::_type = rhs.getType();
+ 	if (this->_brain)
+ 		delete this->_brain;
+    this->_brain = new Brain();
+    *this->_brain = rhs.getBrain();
 	return *this;
 }
 
@@ -29,7 +33,7 @@ Cat::~Cat()
     std::cout << "Default destructor Cat called" << std::endl;
 }
 
-Brain Cat::getBrain()
+Brain & Cat::getBrain() const
 {
     return *this->_brain;
 }

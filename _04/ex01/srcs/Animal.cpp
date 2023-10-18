@@ -5,7 +5,6 @@
 
 Animal::Animal( void )
 {
-    // this->_brain = new Brain();
     std::cout << "Default constructor animal called" << std::endl;
 }
 

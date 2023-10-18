@@ -1,11 +1,7 @@
-
-
-
 #include "AAnimal.hpp"
 
 AAnimal::AAnimal( void )
 {
-    // this->_brain = new Brain();
     std::cout << "Default constructor Aanimal called" << std::endl;
 }
 

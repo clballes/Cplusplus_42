@@ -5,12 +5,6 @@ Cure::Cure(void) : AMateria("cure")
 	std::cout << "Default constructor CURE" << std::endl;
 }
 
-// Cure::Cure(std::string const & type) : AMateria(type)
-// {
-//     std::cout << "Constructor CURE - type:" << type << std::endl;
-//     return ;
-// }
-
 Cure::Cure( Cure const & src) : AMateria("cure")
 {
     *this = src;

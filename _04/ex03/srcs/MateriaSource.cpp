@@ -5,7 +5,7 @@
 
 MateriaSource::MateriaSource()
 {
-	std::cout << " constructor default Materia Source " << std::endl;
+	std::cout << "constructor default Materia Source " << std::endl;
 	for (int i = 0; i < 4; i++)
         _copyMateria[i] = NULL;
 }
