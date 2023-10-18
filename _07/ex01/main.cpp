@@ -3,17 +3,19 @@
 
 int main( void )
 {
-	int a = 2;
-	int b = 3;
-	::swap( a, b );
-	std::cout << "a = " << a << ", b = " << b << std::endl;
-	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
-	std::string c = "chaine1";
-	std::string d = "chaine2";
-	::swap(c, d);
-	std::cout << "c = " << c << ", d = " << d << std::endl;
-	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
-	return 0;
+    int arr[] = {1, 2, 3, 4, 5};
+	char arr2[] = {'a', 'b', 'b', 'e', 'f'};
+    float arr3[] = {1.1f, 2.4f, 3.8f, 4.8f, 5.7f};
+    // double arr4[] = {1, 2, 3, 4, 5};
+
+    int length = 5;
+
+    iter(arr, length, func<int>);
+	std::cout << "------------------" << std::endl;
+    iter(arr2, length, func<char>);
+	std::cout << "------------------" << std::endl;
+    iter(arr3, length, func<float>);
+
+
+    return 0;
 }
