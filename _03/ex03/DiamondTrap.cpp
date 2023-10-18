@@ -32,7 +32,7 @@ DiamondTrap & DiamondTrap::operator=(DiamondTrap const & rhs)
 
 DiamondTrap::~DiamondTrap( void )
 {
-    std::cout << " Deconstructor called in Diamond trap" << std::endl;    
+    std::cout << "Deconstructor called in Diamond trap" << std::endl;    
 }
 
 //functions
