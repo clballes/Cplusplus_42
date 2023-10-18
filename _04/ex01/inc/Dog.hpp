@@ -10,7 +10,7 @@ class Dog : public Animal {
         Dog(Dog const & src);
         Dog & operator=(Dog const & rhs);
         ~Dog();
-        Brain getBrain();
+        Brain& getBrain() const;
         virtual void makeSound() const;
 
     private:

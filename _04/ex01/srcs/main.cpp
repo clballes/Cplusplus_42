@@ -49,14 +49,16 @@ int main()
 // ------- AQUI COMENCA EL CODI DEL MAIN PER TEST -----------
 
 	// Dog *	dog1 = new Dog();
-	// dog1->getBrain().setIdeas(0, "emdic clara");
-	// std::cout << "BRAIN: " << dog1->getBrain().getIdeas(0) << std::endl;
 
-		Dog *	dog1 = new Dog();
+	// dog1->getBrain().setIdeas(0, "emdic clara");
+	
+	// std::cout << "BRAIN holaaaa: " << dog1->getBrain().getIdeas(0) << std::endl;
+
+	Dog *	dog1 = new Dog();
 	dog1->getBrain().setIdeas( 0 , "Dog2 was created with this value");
 
 	Dog	*	dog2 = new Dog(*dog1);
-	std::cout << std::endl;
+	std::cout << "HOLA: " << dog2->getBrain().getIdeas(0) << std::endl;
 
 	std::cout << "Deep copy: ";
 	dog1->getBrain().setIdeas( 0 , "Dog1 is the only that is changed");
@@ -66,31 +68,19 @@ int main()
 		std::cout << "FALSE" << std::endl;
 	std::cout << std::endl;
 
-	std::cout << "Protected string: " << std::endl;
-		dog1->getBrain().setIdeas(200 , "Dog2 was created with this value");
-		dog1->getBrain().getIdeas(200);
+	// std::cout << "Protected string: " << std::endl;
+	// 	dog1->getBrain().setIdeas(200 , "Dog2 was created with this value");
+	// 	dog1->getBrain().getIdeas(200);
 
-	delete dog1;
-	delete dog2;
+	// delete dog1;
+	// delete dog2;
 	// std::cout << "BRAIN 2: " << dog1 << std::endl;
 
 	// dog1->setIdeas(0, "holaa");
-// 	dog1->getBrain().setIdeas( 0 , "Dog2 was created with this value");
+	// dog1->getBrain().setIdeas( 0 , "Dog2 was created with this value");
 
-// 	Dog	*	dog2 = new Dog(*dog1);
-// 	std::cout << std::endl;
-
-// 	std::cout << "Deep copy: ";
-// 	dog1->getBrain().setIdeas( 0 , "Dog1 is the only that is changed");
-// 	if (!(dog2->getBrain().getIdeas(0)).compare("Dog2 was created with this value"))
-// 		std::cout << "TRUE" << std::endl;
-// 	else
-// 		std::cout << "FALSE" << std::endl;
-// 	std::cout << std::endl;
-
-// 	std::cout << "Protected string: " << std::endl;
-// 		dog1->getBrain().setIdeas(200 , "Dog2 was created with this value");
-// 		dog1->getBrain().getIdeas(200);
+	// Dog	*	dog2 = new Dog(*dog1);
+	// std::cout << std::endl;
 
 // 	delete dog1;
 // 	delete dog2;
