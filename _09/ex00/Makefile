@@ -10,14 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = MutationStack
+NAME = btc
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 SRC = srcs/
 INC = inc/
 # Sources
-SRCS = main.cpp
+SRCS = main.cpp BitcoinExchange.cpp
 LIB = BitcoinExchange.hpp
 # create obj and resources
 OBJ = $(SRCS:%.cpp=%.o)
