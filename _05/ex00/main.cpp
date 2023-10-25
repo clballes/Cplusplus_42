@@ -3,20 +3,26 @@
 
 int main()
 {
-	// Bureaucrat a("clara", 0);
-	// std::cout << a;
-    try {
-        Bureaucrat bureaucrat("ash", 1);
+    try
+	{
+        Bureaucrat bureaucrat("clara", 150);
 
         std::cout << bureaucrat;
 
         bureaucrat.incrementGrade();
-        // bureaucrat.decrementGrade();
-    } catch (Bureaucrat::GradeTooHighException &e) {
+        std::cout << bureaucrat;
+
+        bureaucrat.decrementGrade();
+        std::cout << bureaucrat;
+
+	}
+	catch (Bureaucrat::GradeTooHighException &e)
+	{
         std::cout << e.what() << std::endl;
     }
-	// a.incrementGrade();
-	// a.decrementGrade();
-	
+	catch (Bureaucrat::GradeTooLowException &e)
+	{
+        std::cout << e.what() << std::endl;
+	}
 	return 0;
 }

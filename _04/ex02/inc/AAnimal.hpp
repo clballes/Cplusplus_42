@@ -8,13 +8,13 @@ class AAnimal
     public:
         AAnimal();
         AAnimal(std::string name);
-        virtual void makeSound() const = 0;
         AAnimal(const AAnimal &src);
-
         AAnimal &operator=(const AAnimal &rhs);
-        
         virtual ~AAnimal();
+        
+        virtual void makeSound() const = 0;
         std::string getType() const;
+
     protected:
         std::string _type;
 };

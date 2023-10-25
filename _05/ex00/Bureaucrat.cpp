@@ -9,28 +9,10 @@ Bureaucrat::Bureaucrat( void )
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 {
 	std::cout << "Constructor called in Bureaucrat for name: " << this->_name << " and grade is : " << this ->_grade << std::endl;
-	try
-	{
-		if (this->_grade > 150)
-		{
-			throw GradeTooLowException();
-		}
-	}
-	catch(GradeTooLowException& e)
-	{
-		std::cout << "Caught exception: " << e.what() << std::endl;
-	}
-	try
-	{
-		if (this->_grade < 1)
-		{
-			throw GradeTooHighException();
-		}
-	}
-	catch(GradeTooHighException& e)
-	{
-		std::cout << "Caught exception: " << e.what() << std::endl;
-	}
+	if (this->_grade > 150)
+		throw GradeTooLowException();
+	if (this->_grade < 1)
+		throw GradeTooHighException();
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const & src)
@@ -54,41 +36,23 @@ Bureaucrat::~Bureaucrat()
 }
 
 
+// ---------------------------   Member functions ------------------------------
 
-
-//member functions
 void Bureaucrat::incrementGrade()
 {
 	this->_grade--;
-	try
-	{
-		if (this->_grade < 1)
-		{
-			throw GradeTooHighException();
-		}
-	}
-	catch(GradeTooHighException& e)
-	{
-		std::cout << "Caught exception: " << e.what() << std::endl;
-	}
+	if (this->_grade < 1)
+		throw GradeTooHighException();
 }
 
 void Bureaucrat::decrementGrade()
 {
 	this->_grade++;
-	try
-	{
-		if (this->_grade > 150)
-		{
-			throw GradeTooLowException();
-		}
-	}
-	catch(GradeTooLowException& e)
-	{
-		std::cout << "Caught exception: " << e.what() << std::endl;
-	}
+	if (this->_grade > 150)
+		throw GradeTooLowException();
 }
-//getters
+
+// ---------------------------- Getters ---------------------------------------------
 
 std::string Bureaucrat::getName() const
 {
@@ -102,6 +66,18 @@ int Bureaucrat::getGrade() const
 
 std::ostream &	operator<<( std::ostream & o, Bureaucrat const & rhs )
 {
-	o << rhs.getName() <<": bureaucrat grade: " << rhs.getGrade() << std::endl;
+	o << "Name is: " << rhs.getName() <<": Bureaucrat grade: " << rhs.getGrade() << std::endl;
 	return o;
+}
+
+// ------------------------------ Exception messages --------------------------------
+
+const char *Bureaucrat:: GradeTooLowException::what() const throw()
+{
+	return "Grade is too low, it cannot be lower than 150";
+}
+
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return "Grade is too high, 1 is the highest value possible";
 }
