@@ -1,7 +1,5 @@
 #include "../inc/Intern.hpp"
 
-
-
 Intern::Intern(void)
 {
 	std::cout << "Default constructor called Intern" << std::endl;
