@@ -54,12 +54,12 @@ void Bureaucrat::decrementGrade()
 
 void Bureaucrat::signForm(Form &form)
 {
-	if (form.getBool() == true)
-	{
-		std::cout << "Bureaucrat's name: " << getName() << " signed " << "Form name: " << form.getName() << std::endl;
-	}
-	else
-		throw Form::GradeTooLowException();
+	try {
+        form.beSigned( *this );
+        std::cout << this->_name << " signed " << form.getName() << std::endl;
+    } catch (Form::GradeTooLowException &e) {
+        std::cout << _name << " coulnd't sign " << form.getName() << " because " << e.what() << std::endl;
+    }
 }
 
 // ---------------------------- Getters ---------------------------------------------

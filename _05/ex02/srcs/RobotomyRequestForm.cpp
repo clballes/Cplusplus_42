@@ -8,7 +8,7 @@ RobotomyRequestForm::RobotomyRequestForm(void)
 
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm("default", 72, 45), _target(target)
+RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm("RobotomyRequestForm", 72, 45), _target(target)
 {
 	std::cout << "Constructor called RobotomyRequestForm target: " << target << std::endl;
 }
@@ -23,8 +23,7 @@ RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const & src)
 RobotomyRequestForm & RobotomyRequestForm::operator=(RobotomyRequestForm const & rhs)
 {
 	std::cout << "Operator called for RobotomyRequestForm" << std::endl;
-	if ( this != &rhs )
-		*this = rhs.getTarget();
+	(void)rhs;
 	return *this;
 
 }
@@ -37,16 +36,14 @@ std::string RobotomyRequestForm::getTarget() const
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
-	try
-    {
 		AForm::execute(executor);
-		std::cout << "DRILL NOISEEEEEEE PFPFPFPFPFPFPFP" << std::endl;		
-		std::cout << "Target: " << this->_target << " has been robotomized successfully 50% of the time " << std::endl;		
-    }
-    catch(const AForm::GradeTooLowException& e)
-    {
-		std::cout << "Execution Robotomy exception: the robotomization has failed" << std::endl;
-    }
+
+        static int  i;
+        if ( i % 2 == 0 )
+            std::cout << "BZZZZZT! " << this->_target << " has been robotomized!" << std::endl;
+        else
+            std::cout << this->_target << ": robotomization failed! " << std::endl;
+        i++;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()

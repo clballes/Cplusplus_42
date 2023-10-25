@@ -22,6 +22,7 @@ class AForm
 
         //member function
         void beSigned( Bureaucrat const & rhs);
+		//pure virtual function = 0
 		virtual void execute(Bureaucrat const & executor) const = 0;
 
         // getters
@@ -34,20 +35,18 @@ class AForm
 		class GradeTooHighException : public std::exception
 		{
 			public:
-				virtual const char *what() const throw()
-				{
-					return "Grade is too high";
-				}
+				virtual const char *what() const throw();
 		};
-		class GradeTooLowException
+		class GradeTooLowException : public std::exception
 		{
 			public:
-				const char *what() const throw()
-				{
-					return "Grade is too low";
-				}
+				virtual const char *what() const throw();
 		};
-
+		class NotSignedException : public std::exception
+		{
+        	public:
+            	virtual const char* what() const throw();
+    };
 };
 
 std::ostream &	operator<<( std::ostream & o, AForm const & rhs );

@@ -10,17 +10,26 @@
 
 int main()
 {
-	Bureaucrat a("Advocat Santi", 150);
-	a.executeForm();
-	// ShrubberyCreationForm b("mica");
-	// RobotomyRequestForm c("xavi");
-	// PresidentialPardonForm p("andrea");
-	// c.beSigned(a);
-	// c.execute(a);
-	// b.beSigned(a);
-	// b.execute(a);
-	// p.beSigned(a);
-	// p.execute(a);
+ try {
+        Bureaucrat bureaucrat("Clara", 0); // error with 200
+        ShrubberyCreationForm form1("Shrubbery");
+        // RobotomyRequestForm form2("Robotomy");
+        // PresidentialPardonForm form3("President");
 
+        std::cout << "\n--------------- Form 1 ( Shrubbery ) ---------------" << std::endl;
+        bureaucrat.signForm(form1);
+        bureaucrat.executeForm(form1);
+        // std::cout << "\n--------------- Form 2 ( Robotomy ) ---------------" << std::endl;
+        // bureaucrat.signForm(form2);
+        // bureaucrat.executeForm(form2);
+        // bureaucrat.executeForm(form2);
+        // bureaucrat.executeForm(form2);
+        // bureaucrat.executeForm(form2);
+        // std::cout << "\n--------------- Form 3 ( President ) ---------------" << std::endl;
+        // bureaucrat.signForm(form3);
+        // bureaucrat.executeForm(form3);
+    } catch (std::exception &e) {
+        std::cout << e.what() << std::endl;
+    }
 	return 0;
 }

@@ -6,7 +6,7 @@ PresidentialPardonForm::PresidentialPardonForm(void)
 
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AForm("default", 25, 5), _target(target)
+PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AForm("PresidentialPardonForm", 25, 5), _target(target)
 {
 	std::cout << "Constructor called PresidentialPardonForm target: " << target << std::endl;
 }
@@ -21,8 +21,7 @@ PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const & sr
 PresidentialPardonForm & PresidentialPardonForm::operator=(PresidentialPardonForm const & rhs)
 {
 	std::cout << "Operator called for PresidentialPardonForm" << std::endl;
-	if ( this != &rhs )
-		*this = rhs.getTarget();
+	(void)rhs;
 	return *this;
 
 }
@@ -35,15 +34,8 @@ std::string PresidentialPardonForm::getTarget() const
 
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
-	try
-    {
-		AForm::execute(executor);
-		std::cout << "Target: " << this->_target << " has been pardon by Zaphod Beeblebrox." << std::endl;		
-    }
-    catch(const AForm::GradeTooLowException& e)
-    {
-		std::cout << "Execution PresidentialPardonForm exception: " << e.what() << " for the form to be executed" << std::endl;
-    }
+	AForm::execute(executor);
+	std::cout << "Target: " << this->_target << " has been pardon by Zaphod Beeblebrox." << std::endl;		
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()

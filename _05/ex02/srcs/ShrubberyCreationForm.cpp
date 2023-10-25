@@ -8,7 +8,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(void)
 
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("default", 145, 137), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("ShruberryCreationForm", 145, 137), _target(target)
 {
 	std::cout << "Constructor called ShrubberyCreationForm target: " << target << std::endl;
 }
@@ -23,10 +23,8 @@ ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const & src)
 ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm const & rhs)
 {
 	std::cout << "Operator called for ShrubberyCreationForm" << std::endl;
-	if ( this != &rhs )
-		*this = rhs.getTarget();
+	(void)rhs;
 	return *this;
-
 }
 
 //getters
@@ -37,8 +35,6 @@ std::string ShrubberyCreationForm::getTarget() const
 
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-	try
-    {
 		AForm::execute(executor);
 		std::ofstream outfile (this->_target + "_shrubbery.txt");
 		outfile << "       _-_       " << std::endl;
@@ -52,11 +48,6 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 		outfile << "      // \\\\    " << std::endl;
 		outfile.close();
 		return ;
-    }
-    catch(const AForm::GradeTooLowException& e)
-    {
-		std::cout << "Execution exception HOLA ****: " << e.what() << "for the form to be executed" << std::endl;
-    }
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()

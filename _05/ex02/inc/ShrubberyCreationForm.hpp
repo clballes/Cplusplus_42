@@ -4,7 +4,6 @@
 #include <iostream>
 #include "../inc/AForm.hpp"
 
-// class Bureaucrat;
 
 class ShrubberyCreationForm : public AForm
 {
@@ -25,9 +24,4 @@ class ShrubberyCreationForm : public AForm
 		void execute(Bureaucrat const & executor) const;
 };
 
-// std::ostream &	operator<<( std::ostream & o, ShrubberyCreationForm const & rhs );
-
 #endif
-
-// ShrubberyCreationForm: Required grades: sign 145, exec 137
-// Create a file <target>_shrubbery in the working directory, and writes ASCII trees inside it.

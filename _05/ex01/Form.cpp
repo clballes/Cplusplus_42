@@ -5,7 +5,6 @@
 Form::Form(void) : _name("Default"), _ifSigned(false), _gradeToSign(0) , _gradeToExecute(0)
 {
 	std::cout << "Default constructor called Form" << std::endl;
-    // this->_ifSigned = false;
 }
 
 Form::Form(const std::string& name, int gradeToSign, int gradeToExecute) : _name(name), _ifSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
@@ -43,13 +42,13 @@ Form::~Form()
 
 void Form::beSigned( Bureaucrat const & rhs)
 {
-	if (rhs.getGrade() >= this->_gradeToSign)
+	if (rhs.getGrade() > this->_gradeToSign)
+		throw Form::GradeTooLowException();
+	else
 	{
 		this->_ifSigned = true;
 		std::cout << "BeSigned: Form is going to be signed" << std::endl;
 	}
-	else
-		throw Form::GradeTooLowException();
 }
 
 // getters member functions

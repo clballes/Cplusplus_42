@@ -4,7 +4,6 @@
 #include <iostream>
 #include "../inc/AForm.hpp"
 
-// class Bureaucrat;
 
 class PresidentialPardonForm : public AForm
 {
@@ -24,5 +23,6 @@ class PresidentialPardonForm : public AForm
 		//member functions
 		void execute(Bureaucrat const & executor) const;
 };
+
+
 #endif
-//  Required grades: sign 25, exec 5 Informs that <target> has been pardoned by Zaphod Beeblebrox.
