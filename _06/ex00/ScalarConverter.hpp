@@ -8,7 +8,6 @@ enum e_type {
     FLOAT,
     CHAR,
     DOUBLE,
-    LITERALS
 };
 
 
@@ -17,6 +16,7 @@ class ScalarConverter
     private:
         std::string _literal;
         e_type      _type;
+        bool      _point;
         
     public:
         ScalarConverter(void);
@@ -25,12 +25,18 @@ class ScalarConverter
         ~ScalarConverter();
 
         //member funcitons
-        // static void convert(std::string literal, std::string param);
         void setLiteral(std::string literal);
-        // static void convert(std::string literal, int param);
-        // static void convert(std::string literal, float param);
-        // static void convert(std::string literal, double param);
+        void check_type(std::string literal);
+        void convertToInt(std::string literal);
+        void convertToFloat(std::string literal);
+        void convertToDouble(std::string literal);
+        void convertToPseudo(std::string literal);
 
+        class OutofBounds : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
 };
 
 #endif

@@ -8,9 +8,14 @@ int main( int argc, char ** argv )
     }
 
     ScalarConverter c;
-    c.setLiteral(argv[1]);
-    // c.convert();
+    try
+    {
+        c.setLiteral(argv[1]);
+    }
+    catch(ScalarConverter::OutofBounds & e)
+    {
+        std::cout << e.what() << std::endl;
+    }
 
-        // std::cout << c;
     return EXIT_SUCCESS;
 }
