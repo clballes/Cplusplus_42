@@ -14,9 +14,8 @@ enum e_type {
 class ScalarConverter
 {
     private:
-        std::string _literal;
-        e_type      _type;
-        bool      _point;
+        std::string	_literal;
+        e_type		_type;
         
     public:
         ScalarConverter(void);
@@ -26,16 +25,22 @@ class ScalarConverter
 
         //member funcitons
         void setLiteral(std::string literal);
-        void check_type(std::string literal);
-        void convertToInt(std::string literal);
+        void check_type();
+        void convertToInt();
         void convertToFloat(std::string literal);
         void convertToDouble(std::string literal);
-        void convertToPseudo(std::string literal);
+
+		//parsing
+		bool isFloat();
+		bool isInt();
+		bool isDouble();
+		bool isChar();
+		// bool isImpo();
 
         class OutofBounds : public std::exception
 		{
 			public:
-				virtual const char *what() const throw();
+				const char *what() const throw();
 		};
 };
 

@@ -27,10 +27,10 @@ ScalarConverter::~ScalarConverter()
     std::cout << "Destructor called" << std::endl;
 }
 
-//member funcitons
-void ScalarConverter::convertToInt(std::string literal)
+//MEMBER FUNCTIONS
+void ScalarConverter::convertToInt()
 {
-    int intValue = std::stoi(literal);
+    int intValue = std::stoi(this->_literal);
     std::cout << "char: Non displayable " << std::endl;
     std::cout << "int: " << intValue << std::endl;
     float floatValue = static_cast<float>(intValue);
@@ -118,74 +118,120 @@ void ScalarConverter::convertToDouble(std::string literal)
     }
 }
 
-void ScalarConverter::check_type(std::string literal)
+void ScalarConverter::check_type()
 {
     switch (this->_type)
     {
         case INT:
-            convertToInt(literal);
+            convertToInt(this->_literal);
             break;
         case FLOAT:
-            std::cout << "idk q fa el default" << std::endl;
-            convertToFloat(literal);
+            convertToFloat(this->_literal);
             break;
         case DOUBLE:
-            convertToDouble(literal);
-            break;  
-        default:
+            convertToDouble(this->_literal);
+            break; 
+		case NONE:
             throw OutofBounds();
-            std::cout << "idk q fa el default" << std::endl;
+            break; 
+        default:
+            // std::cout << "idk q fa el default" << std::endl;
             break;
     }
 }
 
+
+//PARSING FUNCTIONS
+
+bool ScalarConverter::isFloat()
+{
+	if(this->_literal == "-inff" || this->_literal == "nanf" || this->_literal == "+inff")
+	 	return true;
+	for(size_t i = 0; i < this->_literal.length(); i++)
+	{
+		if (!isdigit(this->_literal[i]) && (_literal[i] != 'f' && _literal[i] != '.'))
+		{
+			return false;
+		}
+	}
+	size_t found = this->_literal.find("f");
+	if (found != std::string::npos && (found + 1 == this->_literal.length()))
+	{
+		return true;
+	}
+	return false;	
+}
+
+bool ScalarConverter::isInt()
+{
+	for(size_t i = 0; i < this->_literal.length(); i++)
+	{
+		if (!isdigit(this->_literal[i]))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+bool ScalarConverter::isDouble()
+{
+	if(this->_literal == "-inf" || this->_literal == "nan" || this->_literal == "+inf")
+		return true;
+	size_t foundf = this->_literal.find("f");
+	size_t foundp = this->_literal.find(".");
+	for(size_t i = 0; i < this->_literal.length(); i++)
+	{
+		if (!isdigit(this->_literal[i]) && ( _literal[i] != '.'))
+		{
+			return false;
+		}
+	}
+	if (foundf == std::string::npos && foundp != std::string::npos && isdigit(this->_literal[foundp + 1]))
+	{
+		std::cout << "double" << std::endl;
+		return true;
+	}
+	return false;
+	
+}
+
+bool ScalarConverter::isChar()
+{
+	if (this->_literal.length() != 1)
+	{
+		return false;
+	}
+	if (this->_literal[0] < 32 || this->_literal[0] > 126)
+		throw OutofBounds();
+	if (!isalpha(this->_literal[0]))
+	{
+		return false;
+	}
+	return true;
+}
+
+
+
 void ScalarConverter::setLiteral(std::string literal)
 {
     this->_literal = literal;
-    for(size_t i = 0; i < literal.length(); i++)
-    {
-        if(this->_literal == "-inff" || this->_literal == "nanf" || this->_literal == "+inff")
-        {
-            this->_type = FLOAT;
-            break ;
-        }
-        if(this->_literal == "-inf" || this->_literal == "nan" || this->_literal == "+inf")
-        {
-            this->_type = DOUBLE;
-            break ;
-        }
-        if (literal[i] < 32 || literal[i] > 126)
-            throw OutofBounds();
-        if (isalpha(literal[i]))
-        {
-            if (literal[i] == 'f')
-            {
-                this->_type = FLOAT;
-                break;
-            }
-            else
-            {
-                this->_type = CHAR;
-            }
-        }
-        else if (isdigit(literal[i]))
-        {
-            this->_type = INT;
-            if(this->_point)
-                this->_type = DOUBLE;
-        }
-        else if (literal[i] == '.')
-        {
-            this->_type = DOUBLE;
-            this->_point = true;
-        }
-    }
-    check_type(literal);
+	if (isFloat())
+		this->_type = FLOAT;
+	else if (isInt())
+		this->_type = INT;
+	else if (isDouble())
+		this->_type = DOUBLE;
+	else if (isChar())
+		this->_type = CHAR;
+	else
+		this->_type = NONE;
+    check_type();
     return ;
 }
 
 
 const char *ScalarConverter::OutofBounds::what() const throw()
 {
-    return "Error: cannot convert non displayable characters";
+    return "Error: Unknown type";
 }
