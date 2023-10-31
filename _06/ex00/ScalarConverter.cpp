@@ -1,7 +1,6 @@
 #include "ScalarConverter.hpp"
 
 // CANONICAL FORM
-
 ScalarConverter::ScalarConverter(void) : _needp(false)
 {
     std::cout << "Constructor called" << std::endl;
@@ -9,14 +8,20 @@ ScalarConverter::ScalarConverter(void) : _needp(false)
 
 ScalarConverter::ScalarConverter(ScalarConverter const & src)
 {
-    std::cout << "Destructor called" << std::endl;
-    (void)src;
+    std::cout << "Copy operator called" << std::endl;
+	*this = src;
 }
 
 ScalarConverter & ScalarConverter::operator=(ScalarConverter const & rhs)
 {
     std::cout << "Destructor called" << std::endl;
-    (void)rhs;
+	this->_literal = rhs._literal;
+    this->_type = rhs._type;
+	this->_charValue = rhs._charValue;
+	this->_intValue = rhs._intValue;
+	this->_floatValue = rhs._floatValue;
+	this->_doubleValue = rhs._doubleValue;
+	this->_needp = rhs._needp;
     return *this;
 }
 
