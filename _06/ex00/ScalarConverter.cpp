@@ -1,10 +1,8 @@
 #include "ScalarConverter.hpp"
-#include <string.h>
-#include <limits>
-#include <cstdlib> // for atoi and atof
-#include <cmath>
 
-ScalarConverter::ScalarConverter(void)
+// CANONICAL FORM
+
+ScalarConverter::ScalarConverter(void) : _needp(false)
 {
     std::cout << "Constructor called" << std::endl;
 }
@@ -28,94 +26,43 @@ ScalarConverter::~ScalarConverter()
 }
 
 //MEMBER FUNCTIONS
-void ScalarConverter::convertToInt()
+
+void ScalarConverter::print()
 {
-    int intValue = std::stoi(this->_literal);
-    std::cout << "char: Non displayable " << std::endl;
-    std::cout << "int: " << intValue << std::endl;
-    float floatValue = static_cast<float>(intValue);
-    std::cout << "float: " << floatValue << "f" << std::endl;
-    double doubleValue = static_cast<double>(intValue);
-    std::cout << "double: " << doubleValue << ".0" << std::endl;
+	if (this->_charValue == "N")
+		std::cout << "char: " << " Non displayable " << std::endl;
+	else if (this->_charValue == "I")
+		std::cout << "char: " << " Non displayable " << std::endl;
+	else
+	{
+		std::cout << "char: " << "'" << this->_literal << "'" << std::endl;
+	}
+    std::cout << "int: " << this->_intValue << std::endl;
+	if (this->_needp)
+	{
+		std::cout << "float: " << this->_floatValue << ".0f" << std::endl;
+    	std::cout << "double: " << this->_doubleValue << ".0" << std::endl;
+	}
+	else
+	{
+		std::cout << "float: " << this->_floatValue << "f" << std::endl;
+    	std::cout << "double: " << this->_doubleValue << std::endl;
+	}
 }
 
-void ScalarConverter::convertToFloat(std::string literal)
+void ScalarConverter::printPesudo()
 {
-    float floatValue = std::stof(literal);
-    double doubleValue = static_cast<double>(floatValue);
-    if (std::isnan(floatValue))
-    {
-        std::cout << "char: impossible " << std::endl;
-        std::cout << "int: impossible" << std::endl;
-        std::cout << "float: " << floatValue << "f" << std::endl;
-        std::cout << "double: " << doubleValue << std::endl;
-    }
-    else if (std::isinf(floatValue))
-    {
-        std::cout << "char: impossible " << std::endl;
-        if (floatValue > 0) {
-            int positiveInfinity = std::numeric_limits<int>::max();
-            std::cout << "int: " << positiveInfinity << std::endl;
-            std::cout << "float: +" << floatValue << "f" << std::endl;
-            std::cout << "double: +" << doubleValue << std::endl;
-        } else {
-            int negativeInfinity = std::numeric_limits<int>::min();
-            std::cout << "int: " << negativeInfinity << std::endl;
-             std::cout << "float: " << floatValue << "f" << std::endl;
-            std::cout << "double: " << doubleValue << std::endl;
-        }
-    }
-    else{
-        std::cout << "char: Non displayable " << std::endl;
-        int intValue = static_cast<int>(floatValue);
-        std::cout << "int: " << intValue << std::endl;
-        std::cout << "float: " << floatValue << "f" << std::endl;
-        double doubleValue = static_cast<double>(floatValue);
-        if (this->_point)
-            std::cout << "double: " << doubleValue << std::endl;
-        else
-        {
-            std::cout << "double: " << doubleValue << ".0" << std::endl;
-
-        }
-    }
-}
-
-void ScalarConverter::convertToDouble(std::string literal)
-{
-    double doubleValue = std::stod(literal);
-    float floatValue = static_cast<float>(doubleValue);
-    if (std::isnan(doubleValue))
-    {
-        std::cout << "char: impossible " << std::endl;
-        std::cout << "int: impossible" << std::endl;
-        std::cout << "float: " << floatValue << "f" << std::endl;
-        std::cout << "double: " << doubleValue << std::endl;
-    }
-    else if (std::isinf(doubleValue))
-    {
-        std::cout << "char: impossible " << std::endl;
-        if (doubleValue > 0) {
-            int positiveInfinity = std::numeric_limits<int>::max();
-            std::cout << "int: " << positiveInfinity << std::endl;
-            std::cout << "float: +" << floatValue << "f" << std::endl;
-            std::cout << "double: +" << std::numeric_limits<double>::infinity() << std::endl;
-        } else {
-            int negativeInfinity = std::numeric_limits<int>::min();
-            std::cout << "int: " << negativeInfinity << std::endl;
-            std::cout << "float: " << floatValue << "f" << std::endl;
-            std::cout << "double: " << doubleValue << std::endl;
-        }
-    }
-    else
-    {
-        std::cout << "char: Non displayable " << std::endl;
-        int intValue = static_cast<int>(doubleValue);
-        std::cout << "int: " << intValue << std::endl;
-        float floatValue = static_cast<float>(doubleValue);
-        std::cout << "float: " << floatValue << "f" << std::endl;
-        std::cout << "double: " << doubleValue << std::endl;
-    }
+	std::cout << "char: impossible " << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	if (_floatValue > 0 && _doubleValue > 0)
+	{
+		std::cout << "float: +" << this->_floatValue << "f" << std::endl;
+		std::cout << "double: +" << this->_doubleValue << std::endl;	
+	}
+	else{
+		std::cout << "float: " << this->_floatValue << "f" << std::endl;
+		std::cout << "double: " << this->_doubleValue << std::endl;
+	}
 }
 
 void ScalarConverter::check_type()
@@ -123,23 +70,71 @@ void ScalarConverter::check_type()
     switch (this->_type)
     {
         case INT:
-            convertToInt(this->_literal);
+            convertToInt();
             break;
         case FLOAT:
-            convertToFloat(this->_literal);
+            convertToFloat();
             break;
         case DOUBLE:
-            convertToDouble(this->_literal);
+            convertToDouble();
+            break;
+		case CHAR:
+            convertToChar();
             break; 
 		case NONE:
             throw OutofBounds();
             break; 
         default:
-            // std::cout << "idk q fa el default" << std::endl;
             break;
     }
 }
 
+// FUNCTION TO CONVERT
+void ScalarConverter::convertToChar()
+{
+	this->_charValue = this->_literal;
+    this->_intValue =  static_cast<int>(this->_charValue[0]);
+    this->_floatValue =  static_cast<float>(this->_charValue[0]);
+    this->_doubleValue =  static_cast<double>(this->_charValue[0]);
+	print();
+}
+
+void ScalarConverter::convertToInt()
+{
+	this->_charValue = "N";
+	this->_intValue = std::stoi(this->_literal);
+	this->_floatValue = static_cast<float>(this->_intValue);
+	this->_doubleValue = static_cast<double>(this->_intValue);
+	print();
+}
+
+void ScalarConverter::convertToFloat()
+{
+    this->_floatValue = std::stof(this->_literal);
+    this->_doubleValue = static_cast<double>( this->_floatValue);
+    if (std::isnan(this->_floatValue) || std::isinf(this->_floatValue)){
+		printPesudo();
+    }
+    else{
+		this->_intValue = static_cast<int>(this->_floatValue);
+		this->_charValue = "N";
+		print();
+    }
+}
+
+void ScalarConverter::convertToDouble()
+{
+    this->_doubleValue = std::stod(this->_literal);
+    this->_floatValue = static_cast<float>(this->_doubleValue);
+    if (std::isnan(this->_floatValue) || std::isinf(this->_floatValue)){
+		printPesudo();
+    }
+    else{
+		this->_intValue = static_cast<int>(this->_doubleValue);
+		this->_charValue = "N";
+		print();
+    }
+}
 
 //PARSING FUNCTIONS
 
@@ -152,6 +147,10 @@ bool ScalarConverter::isFloat()
 		if (!isdigit(this->_literal[i]) && (_literal[i] != 'f' && _literal[i] != '.'))
 		{
 			return false;
+		}
+		if (this->_literal[i] == '.' && this->_literal[i + 1] == '0')
+		{
+			this->_needp = true;
 		}
 	}
 	size_t found = this->_literal.find("f");
@@ -171,6 +170,7 @@ bool ScalarConverter::isInt()
 			return false;
 		}
 	}
+	this->_needp = true;
 	return true;
 }
 
@@ -189,7 +189,6 @@ bool ScalarConverter::isDouble()
 	}
 	if (foundf == std::string::npos && foundp != std::string::npos && isdigit(this->_literal[foundp + 1]))
 	{
-		std::cout << "double" << std::endl;
 		return true;
 	}
 	return false;
@@ -229,7 +228,6 @@ void ScalarConverter::setLiteral(std::string literal)
     check_type();
     return ;
 }
-
 
 const char *ScalarConverter::OutofBounds::what() const throw()
 {
