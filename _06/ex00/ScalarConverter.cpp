@@ -14,7 +14,7 @@ ScalarConverter::ScalarConverter(ScalarConverter const & src)
 
 ScalarConverter & ScalarConverter::operator=(ScalarConverter const & rhs)
 {
-    std::cout << "Destructor called" << std::endl;
+    std::cout << "Operation overload called" << std::endl;
 	this->_literal = rhs._literal;
     this->_type = rhs._type;
 	this->_charValue = rhs._charValue;
