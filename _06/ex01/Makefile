@@ -18,7 +18,7 @@ SRC = srcs/
 INC = inc/
 # Sources
 SRCS = main.cpp Serialization.cpp
-LIB = Serialization.hpp
+LIB = Serialization.hpp Data.hpp
 # create obj and resources
 OBJ = $(SRCS:%.cpp=%.o)
 DEPS = $(SRCS:%.cpp=%.d)
@@ -31,7 +31,7 @@ $(NAME): $(OBJ) $(LIB)
 	$(CC) -I. -c $(CFLAGS) -MMD $< -o $@
 
 clean:
-	$(RM) $(NAME) $(OBJ) $(DEPS) *_shrubbery.txt
+	$(RM) $(NAME) $(OBJ) $(DEPS)
 
 fclean: clean
 

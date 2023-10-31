@@ -2,6 +2,9 @@
 # define __SERIALIZATION_H__
 
 #include <iostream>
+#include "Data.hpp"
+#include <cstdint>
+
 class Serialization 
 {
     public:

@@ -2,12 +2,20 @@
 #define ____PMERGEME__H___
 
 #include <iostream>
-class Pmergeme
+#include <vector>
+
+class PmergeMe
 {
+	private:
+		std::vector<char>vector;
+
     public:
-        Pmergeme(std::string argv);
-        Pmergeme(Pmergeme const & src);
-        Pmergeme & operator=(Pmergeme const & rhs);
-        ~Pmergeme();
+        PmergeMe(int argc, char **argv);
+        PmergeMe(PmergeMe const & src);
+        PmergeMe & operator=(PmergeMe const & rhs);
+        ~PmergeMe();
+
+		// void printVector();
+
 };
 #endif

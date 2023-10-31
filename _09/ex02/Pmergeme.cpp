@@ -1,21 +1,33 @@
-#include "Pmergeme.hpp"
+#include "PmergeMe.hpp"
 
-Pmergeme::Pmergeme(std::string argv)
+PmergeMe::PmergeMe(int argc, char **argv)
 {
-    std::cout << "Constructor called" << argv << std::endl;
-
+    std::cout << "Constructor called" << std::endl;
+	for (int i = 1; i < argc; i++)
+	{
+		this->vector.push_back(argv[i][0]);
+	}
 }
-Pmergeme::Pmergeme(Pmergeme const & src)
+PmergeMe::PmergeMe(PmergeMe const & src)
 {  
     *this = src;
-
 }
-Pmergeme & Pmergeme::operator=(Pmergeme const & rhs)
+PmergeMe & PmergeMe::operator=(PmergeMe const & rhs)
 {
     (void)rhs;
     return *this;
 }
-Pmergeme::~Pmergeme()
+PmergeMe::~PmergeMe()
 {
     std::cout << "Destructor called" << std::endl;
 }
+
+// void PmergeMe::printVector() 
+// {
+//         std::cout << "Vector contents: ";
+// 		std::vector<char>::const_iterator it = this->vector.begin();
+//         for (; it != this->vector.end(); ++it) {
+//             std::cout << *it << " ";
+//         }
+//         std::cout << std::endl;
+// }

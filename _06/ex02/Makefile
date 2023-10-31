@@ -10,15 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = PmergeMe
+NAME = Base
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 SRC = srcs/
 INC = inc/
 # Sources
-SRCS = main.cpp PmergeMe.cpp
-LIB = PmergeMe.hpp
+SRCS = main.cpp Base.cpp A.cpp B.cpp C.cpp
+LIB = Base.hpp A.hpp B.hpp C.hpp
 # create obj and resources
 OBJ = $(SRCS:%.cpp=%.o)
 DEPS = $(SRCS:%.cpp=%.d)
@@ -31,7 +31,7 @@ $(NAME): $(OBJ) $(LIB)
 	$(CC) -I. -c $(CFLAGS) -MMD $< -o $@
 
 clean:
-	$(RM) $(NAME) $(OBJ) $(DEPS) *_shrubbery.txt
+	$(RM) $(NAME) $(OBJ) $(DEPS)
 
 fclean: clean
 

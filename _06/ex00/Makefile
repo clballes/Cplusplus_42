@@ -31,7 +31,7 @@ $(NAME): $(OBJ) $(LIB)
 	$(CC) -I. -c $(CFLAGS) -MMD $< -o $@
 
 clean:
-	$(RM) $(NAME) $(OBJ) $(DEPS) *_shrubbery.txt
+	$(RM) $(NAME) $(OBJ) $(DEPS)
 
 fclean: clean
 
