@@ -149,7 +149,7 @@ bool ScalarConverter::isFloat()
 	 	return true;
 	for(size_t i = 0; i < this->_literal.length(); i++)
 	{
-		if (!isdigit(this->_literal[i]) && (_literal[i] != 'f' && _literal[i] != '.'))
+		if (!isdigit(this->_literal[i]) && (_literal[i] != 'f' && _literal[i] != '.') && this->_literal[i] != '-')
 		{
 			return false;
 		}
@@ -159,7 +159,9 @@ bool ScalarConverter::isFloat()
 		}
 	}
 	size_t found = this->_literal.find("f");
-	if (found != std::string::npos && (found + 1 == this->_literal.length()))
+	size_t foundp = this->_literal.find(".");
+	if (found != std::string::npos && (found + 1 == this->_literal.length())
+		&& foundp != std::string::npos && foundp + 1 != found)
 	{
 		return true;
 	}
@@ -170,7 +172,7 @@ bool ScalarConverter::isInt()
 {
 	for(size_t i = 0; i < this->_literal.length(); i++)
 	{
-		if (!isdigit(this->_literal[i]))
+		if (!isdigit(this->_literal[i]) && this->_literal[i] != '-')
 		{
 			return false;
 		}
@@ -187,7 +189,7 @@ bool ScalarConverter::isDouble()
 	size_t foundp = this->_literal.find(".");
 	for(size_t i = 0; i < this->_literal.length(); i++)
 	{
-		if (!isdigit(this->_literal[i]) && ( _literal[i] != '.'))
+		if (!isdigit(this->_literal[i]) && ( _literal[i] != '.') && this->_literal[i] != '-')
 		{
 			return false;
 		}
