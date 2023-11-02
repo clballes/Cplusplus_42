@@ -7,13 +7,13 @@ Serialization::Serialization(void)
 
 Serialization::Serialization(Serialization const & src)
 {
-    std::cout << "Destructor called" << std::endl;
+    std::cout << "copy constructor called" << std::endl;
     (void)src;
 }
 
 Serialization & Serialization::operator=(Serialization const & rhs)
 {
-    std::cout << "Destructor called" << std::endl;
+    std::cout << "copy operator called" << std::endl;
     (void)rhs;
     return *this;
 }

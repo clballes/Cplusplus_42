@@ -5,7 +5,6 @@ int	main()
 {
 	Data originalData(42);
 	Serialization a;
-    // Serialize the pointer to the Data object
 	
     uintptr_t serializedPtr = a.serialize(&originalData);
 

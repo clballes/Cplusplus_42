@@ -6,9 +6,11 @@
 
 int	main()
 {
-	// Base a;
-	generate();
-	// identify();
-    return 0;
+	Base *ptr;
+	ptr = generate();
 
+	identify(ptr);
+	identify(*ptr);
+	delete ptr;
+    return 0;
 }
