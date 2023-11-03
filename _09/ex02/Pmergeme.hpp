@@ -7,7 +7,7 @@
 class PmergeMe
 {
 	private:
-		std::vector<char>vector;
+		std::vector<int>vector;
 
     public:
         PmergeMe(int argc, char **argv);
@@ -15,7 +15,11 @@ class PmergeMe
         PmergeMe & operator=(PmergeMe const & rhs);
         ~PmergeMe();
 
-		// void printVector();
+		//member functions
+		void printVector();
+		void constructVector();
+		// void mergeSort();
+	void mergeSort(int const begin, int const end);
 
 };
 #endif
