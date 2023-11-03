@@ -7,12 +7,11 @@ int main( int argc, char ** argv )
         return EXIT_FAILURE;
     }
 
-    ScalarConverter c;
     try
     {
-        c.setLiteral(argv[1]);
+    	ScalarConverter::setLiteral(argv[1]);
     }
-    catch(ScalarConverter::OutofBounds & e)
+    catch(std::exception & e)
     {
         std::cout << e.what() << std::endl;
     }

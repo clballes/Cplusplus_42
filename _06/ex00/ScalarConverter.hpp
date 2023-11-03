@@ -19,38 +19,47 @@ enum e_type {
 class ScalarConverter
 {
     private:
-        std::string	_literal;
-        e_type		_type;
-		std::string	_charValue;
-		int 		_intValue;
-		float		_floatValue;
-		double		_doubleValue;
-		bool 		_needp;
-        
-    public:
+        static std::string	_literal;
+        static e_type		_type;
+		static std::string	_charValue;
+		static int			_intValue;
+		static float		_floatValue;
+		static double		_doubleValue;
+		static bool 		_needp;
+
+		// canonical form
         ScalarConverter(void);
         ScalarConverter(ScalarConverter const & src);
         ScalarConverter & operator=(ScalarConverter const & rhs);
+
+		//member functions
+        static void check_type();
+		static void print();
+		static void printPesudo();
+        static void convertToInt();
+		static void convertToChar();
+        static void convertToFloat();
+        static void convertToDouble();
+
+		//parsing
+		static bool isFloat();
+		static bool isInt();
+		static bool isDouble();
+		static bool isChar();
+        
+    public:
         ~ScalarConverter();
 
         //member funcitons
-        void setLiteral(std::string literal);
-        void check_type();
-		void print();
-		void printPesudo();
-        void convertToInt();
-		void convertToChar();
-        void convertToFloat();
-        void convertToDouble();
+        static void setLiteral(std::string literal);
 
-		//parsing
-		bool isFloat();
-		bool isInt();
-		bool isDouble();
-		bool isChar();
-		// bool isImpo();
-
-        class OutofBounds : public std::exception
+        class Unknown : public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
+		
+		class OutofBounds : public std::exception
 		{
 			public:
 				const char *what() const throw();

@@ -3,19 +3,18 @@
 
 #include <iostream>
 #include "Data.hpp"
-#include <cstdint>
 
 class Serialization 
 {
-    public:
+	private:
         Serialization(void);
         Serialization(Serialization const & src);
         Serialization & operator=(Serialization const & rhs);
         ~Serialization();
-    
-    //methods
-        uintptr_t serialize(Data* ptr);
-        Data* deserialize(uintptr_t raw);
+
+    public:
+        static uintptr_t serialize(Data* ptr);
+        static Data* deserialize(uintptr_t raw);
 };
 
 #endif

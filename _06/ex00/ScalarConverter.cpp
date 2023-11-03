@@ -1,7 +1,18 @@
 #include "ScalarConverter.hpp"
 
+//defintion for static members
+std::string ScalarConverter::_literal;
+e_type ScalarConverter::_type;
+std::string ScalarConverter::_charValue;
+int ScalarConverter::_intValue;
+float ScalarConverter::_floatValue;
+double ScalarConverter::_doubleValue;
+bool ScalarConverter::_needp = false;
+
 // CANONICAL FORM
-ScalarConverter::ScalarConverter(void) : _needp(false)
+// bool ScalarConverter::_needp = false;
+
+ScalarConverter::ScalarConverter(void)
 {
     std::cout << "Constructor called" << std::endl;
 }
@@ -34,24 +45,24 @@ ScalarConverter::~ScalarConverter()
 
 void ScalarConverter::print()
 {
-	if (this->_charValue == "N")
+	if (_charValue == "N")
 		std::cout << "char: " << " Non displayable " << std::endl;
-	else if (this->_charValue == "I")
+	else if (_charValue == "I")
 		std::cout << "char: " << " Non displayable " << std::endl;
 	else
 	{
-		std::cout << "char: " << "'" << this->_literal << "'" << std::endl;
+		std::cout << "char: " << "'" << _literal << "'" << std::endl;
 	}
-    std::cout << "int: " << this->_intValue << std::endl;
-	if (this->_needp)
+    std::cout << "int: " << _intValue << std::endl;
+	if (_needp)
 	{
-		std::cout << "float: " << this->_floatValue << ".0f" << std::endl;
-    	std::cout << "double: " << this->_doubleValue << ".0" << std::endl;
+		std::cout << "float: " << _floatValue << ".0f" << std::endl;
+    	std::cout << "double: " << _doubleValue << ".0" << std::endl;
 	}
 	else
 	{
-		std::cout << "float: " << this->_floatValue << "f" << std::endl;
-    	std::cout << "double: " << this->_doubleValue << std::endl;
+		std::cout << "float: " << _floatValue << "f" << std::endl;
+    	std::cout << "double: " << _doubleValue << std::endl;
 	}
 }
 
@@ -61,18 +72,18 @@ void ScalarConverter::printPesudo()
 	std::cout << "int: impossible" << std::endl;
 	if (_floatValue > 0 && _doubleValue > 0)
 	{
-		std::cout << "float: +" << this->_floatValue << "f" << std::endl;
-		std::cout << "double: +" << this->_doubleValue << std::endl;	
+		std::cout << "float: +" << _floatValue << "f" << std::endl;
+		std::cout << "double: +" << _doubleValue << std::endl;	
 	}
 	else{
-		std::cout << "float: " << this->_floatValue << "f" << std::endl;
-		std::cout << "double: " << this->_doubleValue << std::endl;
+		std::cout << "float: " << _floatValue << "f" << std::endl;
+		std::cout << "double: " << _doubleValue << std::endl;
 	}
 }
 
 void ScalarConverter::check_type()
 {
-    switch (this->_type)
+    switch (_type)
     {
         case INT:
             convertToInt();
@@ -87,7 +98,7 @@ void ScalarConverter::check_type()
             convertToChar();
             break; 
 		case NONE:
-            throw OutofBounds();
+            throw Unknown();
             break; 
         default:
             break;
@@ -97,46 +108,79 @@ void ScalarConverter::check_type()
 // FUNCTION TO CONVERT
 void ScalarConverter::convertToChar()
 {
-	this->_charValue = this->_literal;
-    this->_intValue =  static_cast<int>(this->_charValue[0]);
-    this->_floatValue =  static_cast<float>(this->_charValue[0]);
-    this->_doubleValue =  static_cast<double>(this->_charValue[0]);
+	try
+	{
+		_charValue = _literal;
+	}
+	catch(const OutofBounds& e)
+	{
+		std::cerr << e.what() << '\n';
+		return ;
+	}
+    _intValue =  static_cast<int>(_charValue[0]);
+    _floatValue =  static_cast<float>(_charValue[0]);
+    _doubleValue =  static_cast<double>(_charValue[0]);
+	_needp = true;
 	print();
 }
 
 void ScalarConverter::convertToInt()
 {
-	this->_charValue = "N";
-	this->_intValue = std::stoi(this->_literal);
-	this->_floatValue = static_cast<float>(this->_intValue);
-	this->_doubleValue = static_cast<double>(this->_intValue);
+	_charValue = "N";
+	try
+	{
+		_intValue = std::stoi(_literal);
+	}
+	catch(const OutofBounds& e)
+	{
+		std::cerr << e.what() << '\n';
+		return ;
+	}
+	_floatValue = static_cast<float>(_intValue);
+	_doubleValue = static_cast<double>(_intValue);
 	print();
 }
 
 void ScalarConverter::convertToFloat()
 {
-    this->_floatValue = std::stof(this->_literal);
-    this->_doubleValue = static_cast<double>( this->_floatValue);
-    if (std::isnan(this->_floatValue) || std::isinf(this->_floatValue)){
+	try
+	{
+    	_floatValue = std::stof(_literal);
+	}
+	catch(const OutofBounds& e)
+	{
+		std::cerr << e.what() << '\n';
+		return ;
+	}
+    _doubleValue = static_cast<double>( _floatValue);
+    if (std::isnan(_floatValue) || std::isinf(_floatValue)){
 		printPesudo();
     }
     else{
-		this->_intValue = static_cast<int>(this->_floatValue);
-		this->_charValue = "N";
+		_intValue = static_cast<int>(_floatValue);
+		_charValue = "N";
 		print();
     }
 }
 
 void ScalarConverter::convertToDouble()
 {
-    this->_doubleValue = std::stod(this->_literal);
-    this->_floatValue = static_cast<float>(this->_doubleValue);
-    if (std::isnan(this->_floatValue) || std::isinf(this->_floatValue)){
+	try
+	{
+    	_doubleValue = std::stod(_literal);
+	}
+	catch(const OutofBounds& e)
+	{
+		std::cerr << e.what() << '\n';
+		return ;
+	}
+    _floatValue = static_cast<float>(_doubleValue);
+    if (std::isnan(_floatValue) || std::isinf(_floatValue)){
 		printPesudo();
     }
     else{
-		this->_intValue = static_cast<int>(this->_doubleValue);
-		this->_charValue = "N";
+		_intValue = static_cast<int>(_doubleValue);
+		_charValue = "N";
 		print();
     }
 }
@@ -145,22 +189,22 @@ void ScalarConverter::convertToDouble()
 
 bool ScalarConverter::isFloat()
 {
-	if(this->_literal == "-inff" || this->_literal == "nanf" || this->_literal == "+inff")
+	if(_literal == "-inff" || _literal == "nanf" || _literal == "+inff")
 	 	return true;
-	for(size_t i = 0; i < this->_literal.length(); i++)
+	for(size_t i = 0; i < _literal.length(); i++)
 	{
-		if (!isdigit(this->_literal[i]) && (_literal[i] != 'f' && _literal[i] != '.') && this->_literal[i] != '-')
+		if (!isdigit(_literal[i]) && (_literal[i] != 'f' && _literal[i] != '.') && _literal[i] != '-')
 		{
 			return false;
 		}
-		if (this->_literal[i] == '.' && this->_literal[i + 1] == '0')
+		if (_literal[i] == '.' && _literal[i + 1] == '0')
 		{
-			this->_needp = true;
+			_needp = true;
 		}
 	}
-	size_t found = this->_literal.find("f");
-	size_t foundp = this->_literal.find(".");
-	if (found != std::string::npos && (found + 1 == this->_literal.length())
+	size_t found = _literal.find("f");
+	size_t foundp = _literal.find(".");
+	if (found != std::string::npos && (found + 1 == _literal.length())
 		&& foundp != std::string::npos && foundp + 1 != found)
 	{
 		return true;
@@ -170,31 +214,31 @@ bool ScalarConverter::isFloat()
 
 bool ScalarConverter::isInt()
 {
-	for(size_t i = 0; i < this->_literal.length(); i++)
+	for(size_t i = 0; i < _literal.length(); i++)
 	{
-		if (!isdigit(this->_literal[i]) && this->_literal[i] != '-')
+		if (!isdigit(_literal[i]) && _literal[i] != '-')
 		{
 			return false;
 		}
 	}
-	this->_needp = true;
+	_needp = true;
 	return true;
 }
 
 bool ScalarConverter::isDouble()
 {
-	if(this->_literal == "-inf" || this->_literal == "nan" || this->_literal == "+inf")
+	if(_literal == "-inf" || _literal == "nan" || _literal == "+inf")
 		return true;
-	size_t foundf = this->_literal.find("f");
-	size_t foundp = this->_literal.find(".");
-	for(size_t i = 0; i < this->_literal.length(); i++)
+	size_t foundf = _literal.find("f");
+	size_t foundp = _literal.find(".");
+	for(size_t i = 0; i < _literal.length(); i++)
 	{
-		if (!isdigit(this->_literal[i]) && ( _literal[i] != '.') && this->_literal[i] != '-')
+		if (!isdigit(_literal[i]) && ( _literal[i] != '.') && _literal[i] != '-')
 		{
 			return false;
 		}
 	}
-	if (foundf == std::string::npos && foundp != std::string::npos && isdigit(this->_literal[foundp + 1]))
+	if (foundf == std::string::npos && foundp != std::string::npos && isdigit(_literal[foundp + 1]))
 	{
 		return true;
 	}
@@ -204,13 +248,13 @@ bool ScalarConverter::isDouble()
 
 bool ScalarConverter::isChar()
 {
-	if (this->_literal.length() != 1)
+	if (_literal.length() != 1)
 	{
 		return false;
 	}
-	if (this->_literal[0] < 32 || this->_literal[0] > 126)
+	if (_literal[0] < 32 || _literal[0] > 126)
 		throw OutofBounds();
-	if (!isalpha(this->_literal[0]))
+	if (!isalpha(_literal[0]))
 	{
 		return false;
 	}
@@ -221,22 +265,29 @@ bool ScalarConverter::isChar()
 
 void ScalarConverter::setLiteral(std::string literal)
 {
-    this->_literal = literal;
+    ScalarConverter::_literal = literal;
 	if (isFloat())
-		this->_type = FLOAT;
+		_type = FLOAT;
 	else if (isInt())
-		this->_type = INT;
+		_type = INT;
 	else if (isDouble())
-		this->_type = DOUBLE;
+		_type = DOUBLE;
 	else if (isChar())
-		this->_type = CHAR;
+		_type = CHAR;
 	else
-		this->_type = NONE;
+		_type = NONE;
     check_type();
     return ;
 }
 
+
+const char *ScalarConverter::Unknown::what() const throw()
+{
+    return "Error: Unknown type, write it correctly.";
+}
+
+
 const char *ScalarConverter::OutofBounds::what() const throw()
 {
-    return "Error: Unknown type";
+    return "Error: Cannot convert, number incompatible";
 }

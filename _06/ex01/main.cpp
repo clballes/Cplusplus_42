@@ -3,18 +3,18 @@
 
 int	main()
 {
-	Data originalData(42);
-	Serialization a;
+	Data data;
+	data.value = 42;
 	
-    uintptr_t serializedPtr = a.serialize(&originalData);
+    uintptr_t serializedPtr = Serialization::serialize(&data);
 
     // Deserialize the pointer
-    Data* deserializedPtr = a.deserialize(serializedPtr);
+    Data* deserializedPtr = Serialization::deserialize(serializedPtr);
 
     // Check if deserialized pointer is equal to the original pointer
-    if (deserializedPtr == &originalData) {
+    if (deserializedPtr == &data) {
         std::cout << "Serialization and deserialization successful!\n";
-        std::cout << "Original Data value: " << originalData.value << "\n";
+        std::cout << "Original Data value: " << data.value << "\n";
     } else {
         std::cout << "Serialization and deserialization failed!\n";
     }
