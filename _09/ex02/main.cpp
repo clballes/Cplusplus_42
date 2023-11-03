@@ -7,7 +7,6 @@ int main(int argc, char**argv)
         std::cerr << "Error: too much argv" << std::endl;
         return 1;
     }
-    PmergeMe me(argc, argv);
-	// me.printVector();
-	me.constructVector();
+    PmergeMe me;
+	me.constructVector(argc, argv);
 }
