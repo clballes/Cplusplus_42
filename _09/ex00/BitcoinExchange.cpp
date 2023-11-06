@@ -2,20 +2,28 @@
 
 BitcoinExchange::BitcoinExchange( std::string filename )
 {
-    std::cout << "Default constructor bitcoin exchange called" << std::endl;
+    std::cout << "Default Constructor Bitcoin Exchange Called" << std::endl;
     std::ifstream dataCsv(filename);
-    std::string line;
-    while (getline(dataCsv, line)) {
-        if (line != "date,exchange_rate") {
-            std::istringstream iss(line);
-            std::string date;
-            float number;
+	if (!dataCsv.is_open())
+	{
+		throw FailOpen();
+	}
+	else
+	{
+		std::string line;
+		while (getline(dataCsv, line))
+		{
+			if (line != "date,exchange_rate") {
+				std::istringstream iss(line);
+				std::string date;
+				float number;
 
-            if (getline(iss, date, ',') && iss >> number) {
-                this->mapCsv[date] = number;
-            }
-        }
-    }
+				if (getline(iss, date, ',') && iss >> number) {
+					this->mapCsv[date] = number;
+				}
+			}
+		}
+	}
 }
 
 BitcoinExchange::BitcoinExchange(BitcoinExchange const & src)
@@ -135,10 +143,15 @@ BitcoinExchange::~BitcoinExchange()
 
 const char * BitcoinExchange::ErrorSyntax::what() const throw()
 {
-    return " wrong syntax year-month-day.";
+    return "Error in input text: wrong syntax year-month-day.";
 }
 
 const char * BitcoinExchange::ErrorChar::what() const throw()
 {
-    return " not numeric values.";
+    return "Error input text: not numeric values.";
+}
+
+const char * BitcoinExchange::FailOpen::what() const throw()
+{
+    return "Error: Cannot open the file, file not found.";
 }

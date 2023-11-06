@@ -8,5 +8,15 @@ int main(int argc, char**argv)
         return 1;
     }
     PmergeMe me;
-	me.constructVector(argc, argv);
+	try
+	{
+		me.parse_argv(argc, argv);
+		me.constructVector(argc, argv);
+		me.constructList(argc, argv);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
 }
