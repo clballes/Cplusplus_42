@@ -3,8 +3,10 @@
 
 # include <algorithm>
 # include <vector>
+#include <list>
 #include <iostream>
 #include <exception>
+#include <numeric>
 
 class Span{
     public:

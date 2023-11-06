@@ -15,7 +15,5 @@ int main( void )
     iter(arr2, length, func<char>);
 	std::cout << "------------------" << std::endl;
     iter(arr3, length, func<float>);
-
-
     return 0;
 }

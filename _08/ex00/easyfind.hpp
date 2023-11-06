@@ -2,8 +2,8 @@
 #define __EASYFIND__H__
 
 #include <iostream>
-#include <algorithm>// including header file to use stl array and there function 
-#include <vector>// including header file to use stl array and there function 
+#include <algorithm>
+#include <vector>
 
 #include <stdexcept>
 
@@ -19,7 +19,7 @@ public:
 template< typename T>
 void easyfind(const T& param, int num)
 {
-    typename T::const_iterator it;  // Use typename for dependent types
+    typename T::const_iterator it;
     for (it = param.begin(); it != param.end(); ++it)
     {
         if (*it == num)

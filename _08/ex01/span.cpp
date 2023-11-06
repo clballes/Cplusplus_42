@@ -67,25 +67,20 @@ int Span::longestSpan()
 
 void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end)
 {
-    for (std::vector<int>::iterator it = begin; it != end; it++)
+	std::vector<int>::iterator it = begin;
+    for (; it != end; ++it)
     {
         addNumber(*it);
-       
     }
-    // size_t count = std::distance(begin, end);
-    // if (this->_arr.size() + count > this->_N) {
-    //     throw OutBounds();
-    // }
-    // this->_arr.insert(this->_arr.end(), begin, end);
 }
 
 
 const char * Span::NoMoreNums::what() const throw()
 {
-    return "cannot add more numbers, array full";
+    return "Exception max min: cannot add more numbers, array full";
 }
 
 const char * Span::OutBounds::what() const throw()
 {
-    return "There is just one number or zero in the array to perfom the operation";
+    return "Exception: There is just one number or zero in the array to perfom the operation";
 }
