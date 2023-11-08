@@ -8,7 +8,7 @@ int main(int argc, char* argv[])
     }
     try
     {
-    	BitcoinExchange bitcoin("data1.csv");
+    	BitcoinExchange bitcoin("data.csv");
         bitcoin.loadInput(argv[1]);
     }
     catch(const std::exception & e)
