@@ -13,11 +13,17 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm("rob
 	std::cout << "Constructor called RobotomyRequestForm target: " << target << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const & src)
+RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const & src) : AForm(src)
 {
 	std::cout << "Copy operator called for RobotomyRequestForm" << std::endl;
 	*this = src;
 	return ;
+}
+
+AForm *	RobotomyRequestForm::clone( void ) const
+{
+	AForm* clone = new RobotomyRequestForm(*this);
+	return (clone);
 }
 
 RobotomyRequestForm & RobotomyRequestForm::operator=(RobotomyRequestForm const & rhs)

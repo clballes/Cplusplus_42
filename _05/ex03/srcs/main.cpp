@@ -7,15 +7,13 @@
 #include "../inc/Intern.hpp"
 
 
-
-
 int main()
 {
 	Intern  someRandomIntern;
     AForm*   rrf;
 	// rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-	// rrf = someRandomIntern.makeForm("presidential pardon", "Bender");
-	rrf = someRandomIntern.makeForm("Shrubbery Creation", "Bender");
-	
+	rrf = someRandomIntern.makeForm("presidential pardon", "Bender");
+	// rrf = someRandomIntern.makeForm("shruberry creation", "Bender");
+	std::cout << "A "<< rrf->getName() << std::endl;
 	return 0;
 }

@@ -13,7 +13,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm(
 	std::cout << "Constructor called ShrubberyCreationForm target: " << target << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const & src)
+ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const & src) : AForm(src)
 {
 	std::cout << "Copy operator called for ShrubberyCreationForm" << std::endl;
 	*this = src;
@@ -31,6 +31,12 @@ ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm c
 std::string ShrubberyCreationForm::getTarget() const
 {
 	return _target;
+}
+
+AForm *	ShrubberyCreationForm::clone( void ) const
+{
+	AForm* clone = new ShrubberyCreationForm(*this);
+	return (clone);
 }
 
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const

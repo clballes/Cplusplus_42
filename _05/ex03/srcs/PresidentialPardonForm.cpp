@@ -11,10 +11,10 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AFor
 	std::cout << "Constructor called PresidentialPardonForm target: " << target << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const & src)
+PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const & src) : AForm(src)
 {
 	std::cout << "Copy operator called for PresidentialPardonForm" << std::endl;
-	*this = src;
+	// (void)
 	return ;
 }
 
@@ -31,6 +31,13 @@ std::string PresidentialPardonForm::getTarget() const
 {
 	return _target;
 }
+
+AForm *	PresidentialPardonForm::clone( void ) const
+{
+	AForm* clone = new PresidentialPardonForm(*this);
+	return (clone);
+}
+
 
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {

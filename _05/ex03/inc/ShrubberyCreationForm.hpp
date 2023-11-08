@@ -19,6 +19,8 @@ class ShrubberyCreationForm : public AForm
 
 		//getters
 		std::string getTarget() const;
+		AForm *	clone( void ) const;
+
 
 		//member functions
 		void execute(Bureaucrat const & executor) const;

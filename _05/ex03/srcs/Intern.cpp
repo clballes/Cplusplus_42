@@ -19,8 +19,10 @@ Intern & Intern::operator=(Intern const & rhs)
 
 Intern::~Intern()
 {
+
 	std::cout << "Default destructor called Intern" << std::endl;
 }
+
 
 //member function
 AForm* Intern::makeForm(std::string name, std::string target)
@@ -36,7 +38,7 @@ AForm* Intern::makeForm(std::string name, std::string target)
 		if (forms[i]->getName() == name)
 		{
 			std::cout << " * Intern creates " << name << " *" << std::endl;
-			return forms[i];
+			return (forms[i]->clone());
 		}
 	}
 	std::cout << "* No match found for the intern *" << std::endl;

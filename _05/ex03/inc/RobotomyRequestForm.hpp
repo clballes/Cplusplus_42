@@ -17,6 +17,7 @@ class RobotomyRequestForm : public AForm
 		~RobotomyRequestForm();
 
 		//getters
+		AForm *	clone( void ) const;
 		std::string getTarget() const;
 
 		//member functions

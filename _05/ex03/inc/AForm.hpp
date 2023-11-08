@@ -24,6 +24,7 @@ class AForm
         void beSigned( Bureaucrat const & rhs);
 		//pure virtual function = 0
 		virtual void execute(Bureaucrat const & executor) const = 0;
+		virtual AForm *clone( )const = 0;
 
         // getters
         std::string getName() const;
