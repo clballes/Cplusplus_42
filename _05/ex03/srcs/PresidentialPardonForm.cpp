@@ -38,7 +38,6 @@ AForm *	PresidentialPardonForm::clone( void ) const
 	return (clone);
 }
 
-
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
 	AForm::execute(executor);

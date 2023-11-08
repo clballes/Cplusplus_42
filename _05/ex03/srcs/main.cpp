@@ -15,5 +15,6 @@ int main()
 	rrf = someRandomIntern.makeForm("presidential pardon", "Bender");
 	// rrf = someRandomIntern.makeForm("shruberry creation", "Bender");
 	std::cout << "A "<< rrf->getName() << std::endl;
+	delete rrf;
 	return 0;
 }
