@@ -15,7 +15,7 @@ Welcome to my C++ 42 repository! This collection of exercises is designed to lea
 
 ### Module 00: Namespaces, Classes, Member Functions, stdio Streams
 
-- [Exercise 00](module00/exercise00/README.md): Introduction to namespaces and basic class structure.
+- [Exercise 00](_00/ex00): Introduction to namespaces and basic class structure.
 - [Exercise 01](module00/exercise01/README.md): Exploring member functions and stdio streams.
 
 ### Module 01: Memory Allocation, Pointers, References, Switch Statement
