@@ -2,8 +2,6 @@
 # define __ITER_HPP__
 
 #include <iostream>
-#pragma once
-
 
 template< typename T>
 void func(T &adress)
@@ -19,5 +17,22 @@ void iter(T *adress, size_t const &len, void (*func)(T&))
 		func(adress[i]);
 	}
 }
+
+
+// con const
+// template< typename T>
+// void iter(T *adress, size_t const &len, void (*func)(const T&))
+// {
+// 	for (size_t i = 0; i < len; i++)
+// 	{
+// 		func(adress[i]);
+// 	}
+// }
+
+// template< typename T>
+// void func(T const &adress)
+// {
+// 	std::cout << "Valor dintre array: " << adress << std::endl;
+// }
 
 #endif
