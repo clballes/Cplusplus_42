@@ -49,10 +49,6 @@ bool BitcoinExchange::checkErrorInput(std::string const line)
         pipe = 0;
     }
 
-    if (line == "date | value") {
-        return true;
-    }
-
     size_t first = line.find_first_of("-");
     size_t last = line.find_last_of("-");
 
@@ -104,13 +100,30 @@ float    BitcoinExchange::getExhangeRate(const std::string & date)
     return -1;
 }
 
+bool BitcoinExchange::checkTextInput(std::string const line)
+{
+    size_t first = line.find_first_of("-");
+    std::cout << "la linea es: " << line << std::endl;
+    for (size_t i = 0; i < line.length(); ++i) {
+            std::cout << "la  linea es: " << line[i] << std::endl;
+            // if (std::isalpha(line[i])) {
+            //     throw ErrorChar();
+            // }
+    }
+    return true;
+}
+
+
 void    BitcoinExchange::loadInput(std::string filename)
 {
     std::ifstream btcFile(filename);
     std::string line;
+    getline(btcFile, line);
 
     while (getline(btcFile, line)) {
         BitcoinExchange::checkErrorInput(line);
+        BitcoinExchange::checkTextInput(line);
+
     }
     btcFile.clear();
     btcFile.seekg(0, std::ios::beg);

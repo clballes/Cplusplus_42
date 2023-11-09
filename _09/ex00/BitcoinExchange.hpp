@@ -20,6 +20,8 @@ class BitcoinExchange
                 ~BitcoinExchange();
 
                 bool    checkErrorInput(std::string const line);
+                bool    checkTextInput(std::string const line);
+
                 void    loadInput(std::string filename);
                 float   getExhangeRate(const std::string & date);
                 void    print(std::string const & date, float result, float num);
