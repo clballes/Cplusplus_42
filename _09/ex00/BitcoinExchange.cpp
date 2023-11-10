@@ -194,16 +194,6 @@ BitcoinExchange::~BitcoinExchange()
     std::cout << "Default destructor bitcoin exchange called" << std::endl;
 }
 
-const char * BitcoinExchange::ErrorSyntax::what() const throw()
-{
-    return "Error in input text: wrong syntax year-month-day.";
-}
-
-const char * BitcoinExchange::ErrorChar::what() const throw()
-{
-    return "Error input text: not numeric values.";
-}
-
 const char * BitcoinExchange::FailOpen::what() const throw()
 {
     return "Error: Cannot open the file, file not found.";

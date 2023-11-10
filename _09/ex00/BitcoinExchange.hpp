@@ -27,26 +27,12 @@ class BitcoinExchange
                 float   getExhangeRate(const std::string & date);
                 void    print(std::string const & date, float result, float num, int badInput);
 
-                class ErrorSyntax : public std::exception
-                {
-                        public:
-                                virtual const char *what() const throw();
-                };
-                class ErrorChar : public std::exception
-                {
-                        public:
-                                virtual const char * what() const throw();
-                };
 		class FailOpen : public std::exception
                 {
                         public:
                                 virtual const char * what() const throw();
                 };
-                class ErrorDate : public std::exception
-                {
-                        public:
-                                virtual const char * what() const throw();
-                };
+
 
 };
 #endif
