@@ -55,18 +55,20 @@ bool BitcoinExchange::checkErrorInput(std::string const line)
     if ((last == expectedLastDashPosition || last == 13 )&& first == expectedFirstDashPosition && pipe == expectedPipePosition) {
         for (size_t i = 0; i < line.length(); ++i) {
             if (std::isalpha(line[i])) {
-                throw ErrorChar();
+                return false;
+                // throw ErrorChar();
             }
         }
     }else if(pipe == 0)
         return true;
     else {
-            throw ErrorSyntax();
+        return false;
+            // throw ErrorSyntax();
     }
     return true;
 }
 
-void BitcoinExchange::print(std::string const & date, float result, float num)
+void BitcoinExchange::print(std::string const & date, float result, float num, int badInput)
 {
     if (num < 0)
     {
@@ -78,9 +80,14 @@ void BitcoinExchange::print(std::string const & date, float result, float num)
         std::cout << "Error: too large number." << std::endl;
         return ;
     }
-    else if(isnan(num))
+    else if(badInput == 0 )
     {
         std::cout << "Error: bad input"<< " => " << date << std::endl;
+        return ;
+    }
+    else if(isnan(num))
+    {
+        std::cout << "Error: empty value" << " => " << date << std::endl;
         return ;
     }
     std::cout << date << " => " << num << " = " << result << std::endl;
@@ -103,47 +110,80 @@ float    BitcoinExchange::getExhangeRate(const std::string & date)
 bool BitcoinExchange::checkTextInput(std::string const line)
 {
     size_t first = line.find_first_of("-");
-    std::cout << "la linea es: " << line << std::endl;
-    for (size_t i = 0; i < line.length(); ++i) {
-            std::cout << "la  linea es: " << line[i] << std::endl;
-            // if (std::isalpha(line[i])) {
-            //     throw ErrorChar();
-            // }
+    //parsing year 
+    std::string str_year = line.substr(0, first);
+    const char* c_str_year = str_year.c_str();
+    int year = atoi(c_str_year);
+    if (year > 2023 || year < 2009)
+    {
+        return false;
+    }
+
+    //parsing months
+    std::string str_month = line.substr(first + 1, 2);
+    const char* c_str_month = str_month.c_str();
+    int month = atoi(c_str_month);
+    if (month > 12 || month < 1)
+    {
+        return false;
+    }
+
+    //parsing dates
+    std::string str_day = line.substr(first + 4, 2);
+    const char* c_str_day = str_day.c_str();
+    int day = atoi(c_str_day);
+    if (day > 31 || day < 1)
+    {
+        return false;
     }
     return true;
 }
-
 
 void    BitcoinExchange::loadInput(std::string filename)
 {
     std::ifstream btcFile(filename);
     std::string line;
-    getline(btcFile, line);
-
-    while (getline(btcFile, line)) {
-        BitcoinExchange::checkErrorInput(line);
-        BitcoinExchange::checkTextInput(line);
-
+    //check if its empty 
+    while (getline(btcFile, line) == 0)
+    {
+        std::cerr << "Error: empty file" << std::endl;
+        return ;
     }
     btcFile.clear();
     btcFile.seekg(0, std::ios::beg);
+
+    //continue checking
+    getline(btcFile, line);
+    if (getline(btcFile, line) == 0)
+    {
+        std::cerr << "Error: empty file" << std::endl;
+        return ;
+    }
+
+    btcFile.clear();
+    btcFile.seekg(0, std::ios::beg);
+    //check error numbers & do exchange & print
+    getline(btcFile, line);
     while (getline(btcFile, line))
     {
-        if (line != "date | value")
+        if (!line.empty())
         {
             std::istringstream iss(line);
             std::string date;
             float number;
-
+            int badInput = BitcoinExchange::checkErrorInput(line);
+            int badInput2 = BitcoinExchange::checkTextInput(line);
+            if (badInput == 0 || badInput2 == 0)
+                badInput = 0;
             if (getline(iss, date, '|') && iss >> number)
             {
                 float result = getExhangeRate(date) * number; //li passo la date x cada line
-                print(date, result, number);
+                print(date, result, number, badInput);
             }
             else
             {
                 number = std::numeric_limits<float>::quiet_NaN(); //poso el number a Nan to get the error
-                print(date, 0, number);
+                print(date, 0, number, badInput);
             }
         }
     }

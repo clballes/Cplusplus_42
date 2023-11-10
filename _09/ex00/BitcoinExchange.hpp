@@ -7,6 +7,7 @@
 #include <fstream>
 #include <sstream>
 #include <exception>
+#include <stdlib.h>
 
 class BitcoinExchange
 {       
@@ -24,7 +25,7 @@ class BitcoinExchange
 
                 void    loadInput(std::string filename);
                 float   getExhangeRate(const std::string & date);
-                void    print(std::string const & date, float result, float num);
+                void    print(std::string const & date, float result, float num, int badInput);
 
                 class ErrorSyntax : public std::exception
                 {
@@ -36,7 +37,12 @@ class BitcoinExchange
                         public:
                                 virtual const char * what() const throw();
                 };
-				class FailOpen : public std::exception
+		class FailOpen : public std::exception
+                {
+                        public:
+                                virtual const char * what() const throw();
+                };
+                class ErrorDate : public std::exception
                 {
                         public:
                                 virtual const char * what() const throw();
