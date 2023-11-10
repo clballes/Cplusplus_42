@@ -17,17 +17,14 @@ public:
 };
 
 template< typename T>
-void easyfind(const T& param, int num)
+typename T::iterator easyfind( T& param, int num)
 {
-    typename T::const_iterator it;
-    for (it = param.begin(); it != param.end(); ++it)
-    {
-        if (*it == num)
-        {
-            std::cout << "Occurrence found: " << num << std::endl;
-            return;
-        }
+    typename T::iterator it = std::find(param.begin(), param.end(), num);
+    if (it == param.end()) {
+        throw NothingFound();
     }
-    throw NothingFound();
+
+    std::cout << "We found the occurence! " << *it << std::endl;
+    return it;
 }
 #endif

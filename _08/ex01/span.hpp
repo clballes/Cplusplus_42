@@ -18,8 +18,8 @@ class Span{
 
         //member function
         void addNumber(int num);
-        int shortestSpan();
-        int longestSpan();
+        long int shortestSpan();
+        long int longestSpan();
         void addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end );
         class NoMoreNums : public std::exception
         {
@@ -33,7 +33,7 @@ class Span{
         };
     private:
         unsigned int _N;
-        std::vector<int>_arr;
+        std::vector<long int>_arr;
 };
 
 #endif

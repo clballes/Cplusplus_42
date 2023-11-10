@@ -2,7 +2,7 @@
 
 Span::Span( void )
 {
-    std::cout << "Default constructor Span called" << std::endl;
+    // std::cout << "Default constructor Span called" << std::endl;
 }
 Span::Span(unsigned int N) : _N(N)
 {
@@ -23,7 +23,7 @@ Span & Span::operator=(Span const & rhs)
 
 Span::~Span()
 {
-    std::cout << "Default Destructor Span called" << std::endl;
+    // std::cout << "Default Destructor Span called" << std::endl;
 }
 
 void Span::addNumber(int num)
@@ -36,17 +36,17 @@ void Span::addNumber(int num)
     this->_arr.push_back(num);
 }
 
-int Span::shortestSpan()
+long int Span::shortestSpan()
 {
     if (this->_arr.size() <= 1)
         throw OutBounds();
     
     std::sort(this->_arr.begin(), this->_arr.end());
 
-    int minSpan = this->_arr[1] - this->_arr[0];
+    long int minSpan = this->_arr[1] - this->_arr[0];
     for (size_t i = 2; i < this->_arr.size(); ++i)
     {
-        int span = this->_arr[i] - this->_arr[i - 1];
+        long int span = this->_arr[i] - this->_arr[i - 1];
         if (span < minSpan)
         {
             minSpan = span;
@@ -55,12 +55,12 @@ int Span::shortestSpan()
     return minSpan;
 }
 
-int Span::longestSpan()
+long int Span::longestSpan()
 {
     if (this->_arr.size() <= 1)
         throw OutBounds();
     std::sort(this->_arr.begin(), this->_arr.end());
-    int maxSpan = this->_arr[this->_arr.size() - 1] - this->_arr[0];
+    long int maxSpan = this->_arr[this->_arr.size() - 1] - this->_arr[0];
 
     return maxSpan;
 }
