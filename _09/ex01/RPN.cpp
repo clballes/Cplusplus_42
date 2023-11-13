@@ -5,7 +5,7 @@
 
 RPN::RPN( std::string argv ) : _result(0)
 {
-    std::cout << "Default Constructor called RPN" << std::endl;
+    //std::cout << "Default Constructor called RPN" << std::endl;
     for(unsigned long int i = 0; i < argv.size(); i++)
     {
         if (argv[i] != 32)
@@ -88,7 +88,7 @@ void RPN::operations(char op, int num1, int num2)
 
 RPN::~RPN()
 {
-    std::cout << "Default Destrcutor called RPN" << std::endl;
+    //std::cout << "Default Destrcutor called RPN" << std::endl;
 }
 
 const char * RPN::ErrorDivision::what() const throw()

@@ -2,7 +2,7 @@
 
 BitcoinExchange::BitcoinExchange( std::string filename )
 {
-    std::cout << "Default Constructor Bitcoin Exchange Called" << std::endl;
+    //std::cout << "Default Constructor Bitcoin Exchange Called" << std::endl;
     std::ifstream dataCsv(filename);
 	if (!dataCsv.is_open())
 	{
@@ -191,7 +191,7 @@ void    BitcoinExchange::loadInput(std::string filename)
 
 BitcoinExchange::~BitcoinExchange()
 {
-    std::cout << "Default destructor bitcoin exchange called" << std::endl;
+    //std::cout << "Default destructor bitcoin exchange called" << std::endl;
 }
 
 const char * BitcoinExchange::FailOpen::what() const throw()

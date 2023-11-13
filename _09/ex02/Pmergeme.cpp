@@ -4,7 +4,7 @@
 
 PmergeMe::PmergeMe(void)
 {
-    std::cout << "Constructor called" << std::endl;
+    //std::cout << "Constructor called" << std::endl;
 }
 
 PmergeMe::PmergeMe(PmergeMe const & src)
@@ -20,7 +20,7 @@ PmergeMe & PmergeMe::operator=(PmergeMe const & rhs)
 
 PmergeMe::~PmergeMe()
 {
-    std::cout << "Destructor called" << std::endl;
+    //std::cout << "Destructor called" << std::endl;
 }
 
 
