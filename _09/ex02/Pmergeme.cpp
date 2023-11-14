@@ -23,16 +23,14 @@ PmergeMe::~PmergeMe()
     //std::cout << "Destructor called" << std::endl;
 }
 
-
-
 void PmergeMe::parse_argv(int argc, char **argv)
 {
 	for (int i = 1; i < argc; i++)
     {
 		for (int j = 0; argv[i][j] != '\0'; j++)
         {
-            if (!isdigit(argv[i][j]))
-            {
+			if (!isdigit(argv[i][j]) || (j == 0 && argv[i][j] == '0'))
+		   	{
                 throw ErrorParse();
             }
         }
@@ -41,6 +39,7 @@ void PmergeMe::parse_argv(int argc, char **argv)
 
 
 // ----------------------------- MEMBER FUNCTIONS FOR VECTOR --------------------------
+
 void PmergeMe::insertionSortVector(int p, int q)
 {
 	for (int i = p; i < q; i++) {
@@ -52,11 +51,6 @@ void PmergeMe::insertionSortVector(int p, int q)
 		}
 		this->vector[j] = tempVal;
 	}
-
-	// for (int i = p; i <= q; i++) {
-	//     std::cout << this->vector[i] << " ";
-	// }
-	// std::cout << std::endl;
 }
 
 void PmergeMe::mergeVector(int p, int q, int r)
@@ -126,85 +120,89 @@ void 	PmergeMe::constructVector(int argc, char **argv)
     std::cout << "Time to process a range of: " << vec_size << " with std::vector : " << elapsedTime << " us." << std::endl;
 }
 
-
 // ----------------------------- MEMBER FUNCTIONS FOR LIST --------------------------
-
-void PmergeMe::insertionSortList(std::list<int>::iterator p, std::list<int>::iterator q)
-{
-	for (std::list<int>::iterator it = p; it != q; ++it) {
-		int tempVal = *(std::next(it));
-		std::list<int>::iterator j = std::next(it);
-		while (j != myList.begin() && *(std::prev(j)) > tempVal) {
-			*(j) = *(std::prev(j));
-			--j;
-		}
-		*(j) = tempVal;
-	}
-}
 
 void PmergeMe::mergeList(std::list<int>::iterator p, std::list<int>::iterator q, std::list<int>::iterator r)
 {
-	std::list<int> LA(p, std::next(q));
-	std::list<int> RA(std::next(q), std::next(r));
+    std::list<int> merged;
+    std::list<int>::iterator LIDX = p;
+    std::list<int>::iterator RIDX = q;
 
-	std::list<int>::iterator RIDX = RA.begin();
-	std::list<int>::iterator LIDX = LA.begin();
+    while (LIDX != q && RIDX != r) {
+        if (*LIDX < *RIDX) {
+            merged.push_back(*LIDX);
+            ++LIDX;
+        } else {
+            merged.push_back(*RIDX);
+            ++RIDX;
+        }
+    }
 
-	for (std::list<int>::iterator it = p; it != std::next(r); ++it) {
-		if (RIDX == RA.end()) {
-			*(it) = *(LIDX++);
-		} else if (LIDX == LA.end()) {
-			*(it) = *(RIDX++);
-		} else if (*(RIDX) > *(LIDX)) {
-			*(it) = *(LIDX++);
-		} else {
-			*(it) = *(RIDX++);
-		}
-	}
+    while (LIDX != q) {
+        merged.push_back(*LIDX);
+        ++LIDX;
+    }
+
+    while (RIDX != r) {
+        merged.push_back(*RIDX);
+        ++RIDX;
+    }
+
+    std::copy(merged.begin(), merged.end(), p);
 }
 
 void PmergeMe::sortList(std::list<int>::iterator begin, std::list<int>::iterator end)
 {
-	if (std::distance(begin, end) > 5) {
-		std::list<int>::iterator q = std::next(begin, std::distance(begin, end) / 2);
-		sortList(begin, q);
-		sortList(std::next(q), end);
-		mergeList(begin, q, end);
-	} else {
-		insertionSortList(begin, end);
-	}
+    if (std::distance(begin, end) > 1) {
+        std::list<int>::iterator q = std::next(begin, std::distance(begin, end) / 2);
+        sortList(begin, q);
+        sortList(q, end);
+        mergeList(begin, q, end);
+    }
 }
 
 void PmergeMe::printList()
 {
-	for (std::list<int>::iterator it = this->myList.begin(); it != this->myList.end(); ++it) {
-		std::cout << *it << " ";
-	}
-	std::cout << std::endl;
+    for (std::list<int>::iterator it = myList.begin(); it != myList.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
 }
 
 void PmergeMe::constructList(int argc, char **argv)
 {
-	clock_t startTimeL = clock();
-	for (int i = 1; i < argc; i++)
-	{
-		int intValue = std::atoi(argv[i]);
-		myList.push_back(intValue);
-	}
-	std::cout << "Before: ";
-	printList();
-	std::list<int>::iterator list_end = myList.end();
-	--list_end;
-	sortList(myList.begin(), list_end);
-	std::cout << "After: ";
-	printList();
-	clock_t endTimeL = clock();
-	double elapsedTime = (static_cast<double>(endTimeL - startTimeL) / CLOCKS_PER_SEC) * 1000000;
-	std::cout << "Time to process a range of: " << myList.size() <<  " std::list: " << elapsedTime << " us." << std::endl;
+    clock_t startTimeL = clock();
+    for (int i = 1; i < argc; ++i) {
+        int intValue = std::atoi(argv[i]);
+        myList.push_back(intValue);
+    }
+    std::cout << "Before: ";
+    printList();
+    int list_size = myList.size();
+    sortList(myList.begin(), myList.end());
+    std::cout << "After: ";
+    printList();
+    clock_t endTimeL = clock();
+    double elapsedTime = (static_cast<double>(endTimeL - startTimeL) / CLOCKS_PER_SEC) * 1000000;
+    std::cout << "Time to process a range of: " << list_size << " with std::list : " << elapsedTime << " us." << std::endl;
 }
 
+void PmergeMe::insertionSortList(std::list<int>::iterator p, std::list<int>::iterator q)
+{
+    for (std::list<int>::iterator i = p; i != q; ++i) {
+        int tempVal = *std::next(i);
+        std::list<int>::iterator j = i;
+        while (j != p && *std::prev(j) > tempVal) {
+            *std::next(j) = *std::prev(j);
+            --j;
+        }
+        *std::next(j) = tempVal;
+    }
+}
+
+// ----------------------------- EXCEPTIONS --------------------------
 
 const char * PmergeMe::ErrorParse::what() const throw()
 {
-    return "Error: check arguments syntax, just positive digits.";
+    return "Error: Just positive digits.";
 }

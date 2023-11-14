@@ -22,6 +22,7 @@ class PmergeMe
 
 
 		void parse_argv(int argc, char **argv);
+
 		//member functions for std::vector
 		void constructVector(int argc, char **argv);
 		void sortVector(int begin, int end);
@@ -30,14 +31,14 @@ class PmergeMe
 		void printVector();
 
 		//memebr functions for std::list
+
 		void constructList(int argc, char **argv);
 		void sortList(std::list<int>::iterator begin, std::list<int>::iterator end);
-  		void insertionSortList(std::list<int>::iterator p, std::list<int>::iterator q);
+		void insertionSortList(std::list<int>::iterator p, std::list<int>::iterator q);
 		void mergeList(std::list<int>::iterator p, std::list<int>::iterator q, std::list<int>::iterator r);
 		void printList();
 
 		//exceptions
-
 		class ErrorParse : public std::exception
 		{
 				public:
