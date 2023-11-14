@@ -9,9 +9,6 @@ float ScalarConverter::_floatValue;
 double ScalarConverter::_doubleValue;
 bool ScalarConverter::_needp = false;
 
-// CANONICAL FORM
-// bool ScalarConverter::_needp = false;
-
 ScalarConverter::ScalarConverter(void)
 {
     std::cout << "Constructor called" << std::endl;
@@ -48,7 +45,7 @@ void ScalarConverter::print()
 	if (_charValue == "N")
 		std::cout << "char: " << " Non displayable " << std::endl;
 	else if (_charValue == "I")
-		std::cout << "char: " << " Non displayable " << std::endl;
+		std::cout << "char: " << " Imposible " << std::endl;
 	else
 	{
 		std::cout << "char: " << "'" << _literal << "'" << std::endl;
