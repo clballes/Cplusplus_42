@@ -123,20 +123,33 @@ bool BitcoinExchange::checkTextInput(std::string const line)
     std::string str_month = line.substr(first + 1, 2);
     const char* c_str_month = str_month.c_str();
     int month = atoi(c_str_month);
-    if (month > 12 || month < 1)
-    {
-        return false;
-    }
 
     //parsing dates
     std::string str_day = line.substr(first + 4, 2);
     const char* c_str_day = str_day.c_str();
     int day = atoi(c_str_day);
-    if (day > 31 || day < 1)
+
+    if (isValidDate(month, day) == 0)
     {
+        std::cout << "entru" << std::endl;    
         return false;
     }
     return true;
+}
+
+bool BitcoinExchange::isValidDate(int month, int day)
+{
+    if (month < 1 || month > 12 || day < 1 || day > 31)
+        return false;
+
+    if (month == 2 && day > 28)
+        return false;
+
+    if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+        return false;
+
+    return true;
+    
 }
 
 void    BitcoinExchange::loadInput(std::string filename)

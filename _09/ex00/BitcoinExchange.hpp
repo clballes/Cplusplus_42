@@ -12,7 +12,7 @@
 class BitcoinExchange
 {       
         private:
-            std::map<std::string, float> mapCsv;
+                std::map<std::string, float> mapCsv;
 
         public:
                 BitcoinExchange( std::string filename ); //charge the data.csv
@@ -22,6 +22,8 @@ class BitcoinExchange
 
                 bool    checkErrorInput(std::string const line);
                 bool    checkTextInput(std::string const line);
+                bool    isValidDate(int month, int day);
+
 
                 void    loadInput(std::string filename);
                 float   getExhangeRate(const std::string & date);
