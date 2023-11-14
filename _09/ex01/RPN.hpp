@@ -6,11 +6,13 @@
 #include <string>
 #include <stdlib.h>
 #include <exception>
+#include <sstream>
+
 class RPN
 {
         private:
-                        std::stack<int> stack;
-                        int _result;
+                std::stack<int> stack;
+                int _result;
         public:
                 RPN(std::string argv); //charge the csvmap
                 RPN(RPN const & src);
@@ -25,5 +27,17 @@ class RPN
                         public:
                                 virtual const char *what() const throw();
                 };
+                class ErrorNums : public std::exception
+                {
+                        public:
+                                virtual const char *what() const throw();
+                };
+                class ErrorSyntax : public std::exception
+                {
+                        public:
+                                virtual const char *what() const throw();
+                };
+                ostream & operator<<(ostream & os, stack<double> my_stack);
+
 };
 #endif

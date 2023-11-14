@@ -11,8 +11,8 @@ int main(int argc, char**argv)
     {
         RPN rpn(argv[1]);
     }
-    catch(const RPN::ErrorDivision & e)
+    catch(const std::exception & e)
     {
-        std::cout << "Error: " << e.what() << std::endl;
+        std::cout << e.what() << std::endl;
     }
 }
