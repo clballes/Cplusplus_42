@@ -130,10 +130,7 @@ bool BitcoinExchange::checkTextInput(std::string const line)
     int day = atoi(c_str_day);
 
     if (isValidDate(month, day) == 0)
-    {
-        std::cout << "entru" << std::endl;    
         return false;
-    }
     return true;
 }
 
