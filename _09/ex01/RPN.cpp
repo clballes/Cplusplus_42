@@ -54,12 +54,10 @@ bool RPN::calculate(char op)
 {
     if (stack.size() < 2)
     {
-        int   num1 = stack.top();
-        std::cerr << "Error size stack too small" << "size: " << stack.size() << "   num 1    : "<<  num1 << std::endl;
+        throw ErrorSyntax();
         return false;
     }
     int num1 = stack.top();
-    std::cout << << std::endl;
     stack.pop();
     int num2 = stack.top();
     stack.pop();
@@ -100,16 +98,14 @@ RPN::~RPN()
     //std::cout << "Default Destrcutor called RPN" << std::endl;
 }
 
-
-
-ostream & operator<<(ostream & os, stack<double> my_stack)
+std::ostream &	operator<<( std::ostream & os, std::stack<int> my_stack )
 {
-    while(!my_stack.empty()) //body
+    while(!my_stack.empty())
     {
         os << my_stack.top() << " ";
         my_stack.pop();
     }
-    return os; // end of function
+    return os;
 }
 
 // ----------------------------- EXCEPTIONS --------------------------

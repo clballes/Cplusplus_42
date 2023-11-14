@@ -37,7 +37,9 @@ class RPN
                         public:
                                 virtual const char *what() const throw();
                 };
-                ostream & operator<<(ostream & os, stack<double> my_stack);
 
 };
+std::ostream & operator<<(std::ostream & os, std::stack<int> my_stack);
+// std::ostream &	operator<<( std::ostream & o, Bureaucrat const & rhs );
+
 #endif
