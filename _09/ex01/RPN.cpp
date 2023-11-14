@@ -81,11 +81,11 @@ void RPN::operations(char op, int num1, int num2)
         this->_result = num1 * num2;
         break;
     case '/':
-        this->_result = num1 / num2;
         if (num2 == 0)
         {
             throw ErrorDivision();
         }
+        this->_result = num1 / num2;
         break;
     default:
         std::cerr << "Error: Unknown operand." << std::endl;
@@ -113,7 +113,7 @@ std::ostream &	operator<<( std::ostream & os, std::stack<int> my_stack )
 
 const char * RPN::ErrorDivision::what() const throw()
 {
-    return "Error: cannot divide by 0";
+    return "Error: cannot divide by 0.";
 }
 
 const char * RPN::ErrorNums::what() const throw()
