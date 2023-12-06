@@ -33,7 +33,10 @@ RPN::RPN( std::string argv ) : _result(0)
                 return ;
             }
         }
-
+    }
+    if (stack.size()!= 1)
+    {
+        throw ErrorSyntax();
     }
     std::cout << "Result: " << this->_result << std::endl;
 }
@@ -74,7 +77,7 @@ void RPN::operations(char op, int num1, int num2)
         break;
     case '-':
     {
-        this->_result = num1 - num2;   
+        this->_result = num1 - num2;  
         break;
     }
     case '*':
